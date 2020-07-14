@@ -1,0 +1,2793 @@
+<!DOCTYPE html>
+<!-- saved from url=(0073)http://localhost:8888/notebooks/Desktop/Python/exponential%20graphs.ipynb -->
+<html lang="en-us"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    
+
+    <title>exponential graphs - Jupyter Notebook</title>
+    
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <link rel="stylesheet" href="./exponential graphs - Jupyter Notebook_files/jquery-ui.min.css" type="text/css">
+    <link rel="stylesheet" href="./exponential graphs - Jupyter Notebook_files/jquery.typeahead.min.css" type="text/css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    
+
+
+<script type="text/javascript" src="./exponential graphs - Jupyter Notebook_files/MathJax.js.download" charset="utf-8"></script>
+
+<script type="text/javascript">
+// MathJax disabled, set as null to distinguish from *missing* MathJax,
+// where it will be undefined, and should prompt a dialog later.
+window.mathjax_url = "/static/components/MathJax/MathJax.js";
+</script>
+
+<link rel="stylesheet" href="./exponential graphs - Jupyter Notebook_files/bootstrap-tour.min.css" type="text/css">
+<link rel="stylesheet" href="./exponential graphs - Jupyter Notebook_files/codemirror.css">
+
+
+    <link rel="stylesheet" href="./exponential graphs - Jupyter Notebook_files/style.min.css" type="text/css">
+    
+
+<link rel="stylesheet" href="./exponential graphs - Jupyter Notebook_files/override.css" type="text/css">
+<link rel="stylesheet" href="http://localhost:8888/notebooks/Desktop/Python/exponential%20graphs.ipynb" id="kernel-css" type="text/css">
+
+
+    <link rel="stylesheet" href="./exponential graphs - Jupyter Notebook_files/custom.css" type="text/css">
+    <script src="./exponential graphs - Jupyter Notebook_files/promise.min.js.download" type="text/javascript" charset="utf-8"></script>
+    <script src="./exponential graphs - Jupyter Notebook_files/react.production.min.js.download" type="text/javascript"></script>
+    <script src="./exponential graphs - Jupyter Notebook_files/react-dom.production.min.js.download" type="text/javascript"></script>
+    <script src="./exponential graphs - Jupyter Notebook_files/index.js.download" type="text/javascript"></script>
+    <script src="./exponential graphs - Jupyter Notebook_files/require.js.download" type="text/javascript" charset="utf-8"></script>
+    <script>
+      require.config({
+          
+          urlArgs: "v=20200713165357",
+          
+          baseUrl: '/static/',
+          paths: {
+            'auth/js/main': 'auth/js/main.min',
+            custom : '/custom',
+            nbextensions : '/nbextensions',
+            kernelspecs : '/kernelspecs',
+            underscore : 'components/underscore/underscore-min',
+            backbone : 'components/backbone/backbone-min',
+            jed: 'components/jed/jed',
+            jquery: 'components/jquery/jquery.min',
+            json: 'components/requirejs-plugins/src/json',
+            text: 'components/requirejs-text/text',
+            bootstrap: 'components/bootstrap/dist/js/bootstrap.min',
+            bootstraptour: 'components/bootstrap-tour/build/js/bootstrap-tour.min',
+            'jquery-ui': 'components/jquery-ui/jquery-ui.min',
+            moment: 'components/moment/min/moment-with-locales',
+            codemirror: 'components/codemirror',
+            termjs: 'components/xterm.js/xterm',
+            typeahead: 'components/jquery-typeahead/dist/jquery.typeahead.min',
+          },
+          map: { // for backward compatibility
+              "*": {
+                  "jqueryui": "jquery-ui",
+              }
+          },
+          shim: {
+            typeahead: {
+              deps: ["jquery"],
+              exports: "typeahead"
+            },
+            underscore: {
+              exports: '_'
+            },
+            backbone: {
+              deps: ["underscore", "jquery"],
+              exports: "Backbone"
+            },
+            bootstrap: {
+              deps: ["jquery"],
+              exports: "bootstrap"
+            },
+            bootstraptour: {
+              deps: ["bootstrap"],
+              exports: "Tour"
+            },
+            "jquery-ui": {
+              deps: ["jquery"],
+              exports: "$"
+            }
+          },
+          waitSeconds: 30,
+      });
+
+      require.config({
+          map: {
+              '*':{
+                'contents': 'services/contents',
+              }
+          }
+      });
+
+      // error-catching custom.js shim.
+      define("custom", function (require, exports, module) {
+          try {
+              var custom = require('custom/custom');
+              console.debug('loaded custom.js');
+              return custom;
+          } catch (e) {
+              console.error("error loading custom.js", e);
+              return {};
+          }
+      })
+
+    document.nbjs_translations = {"domain": "nbjs", "locale_data": {"nbjs": {"": {"domain": "nbjs"}}}};
+    document.documentElement.lang = navigator.language.toLowerCase();
+    </script>
+
+    
+    
+
+<script type="text/javascript" charset="utf-8" async="" data-requirecontext="_" data-requiremodule="services/contents" src="./exponential graphs - Jupyter Notebook_files/contents.js.download"></script><style type="text/css">.MathJax_Preview {color: #888}
+#MathJax_Message {position: fixed; left: 1em; bottom: 1.5em; background-color: #E6E6E6; border: 1px solid #959595; margin: 0px; padding: 2px 8px; z-index: 102; color: black; font-size: 80%; width: auto; white-space: nowrap}
+#MathJax_MSIE_Frame {position: absolute; top: 0; left: 0; width: 0px; z-index: 101; border: 0px; margin: 0px; padding: 0px}
+.MathJax_Error {color: #CC0000; font-style: italic}
+</style><script type="text/javascript" charset="utf-8" async="" data-requirecontext="_" data-requiremodule="custom/custom" src="./exponential graphs - Jupyter Notebook_files/custom.js.download"></script><script type="text/javascript" charset="utf-8" async="" data-requirecontext="_" data-requiremodule="nbextensions/jupyter-js-widgets/extension" src="./exponential graphs - Jupyter Notebook_files/extension.js.download"></script><style type="text/css">/*
+ * Copyright (c) Jupyter Development Team.
+ * Distributed under the terms of the Modified BSD License.
+ */
+
+/* Override the correction for the prompt area in https://github.com/jupyter/notebook/blob/dd41d9fd5c4f698bd7468612d877828a7eeb0e7a/IPython/html/static/notebook/less/outputarea.less#L110 */
+.jupyter-widgets-output-area div.output_subarea {
+    max-width: 100%;
+}
+
+/* Work-around for the bug fixed in https://github.com/jupyter/notebook/pull/2961 */
+.jupyter-widgets-output-area > .out_prompt_overlay {
+    display: none;
+}
+</style><style type="text/css">/*-----------------------------------------------------------------------------
+| Copyright (c) 2014-2017, PhosphorJS Contributors
+|
+| Distributed under the terms of the BSD 3-Clause License.
+|
+| The full license is in the file LICENSE, distributed with this software.
+|----------------------------------------------------------------------------*/
+
+
+.p-Widget {
+  box-sizing: border-box;
+  position: relative;
+  overflow: hidden;
+  cursor: default;
+}
+
+
+.p-Widget.p-mod-hidden {
+  display: none !important;
+}
+</style><style type="text/css">/*-----------------------------------------------------------------------------
+| Copyright (c) 2014-2017, PhosphorJS Contributors
+|
+| Distributed under the terms of the BSD 3-Clause License.
+|
+| The full license is in the file LICENSE, distributed with this software.
+|----------------------------------------------------------------------------*/
+
+
+.p-CommandPalette {
+  display: flex;
+  flex-direction: column;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+
+.p-CommandPalette-search {
+  flex: 0 0 auto;
+}
+
+
+.p-CommandPalette-content {
+  flex: 1 1 auto;
+  margin: 0;
+  padding: 0;
+  min-height: 0;
+  overflow: auto;
+  list-style-type: none;
+}
+
+
+.p-CommandPalette-header {
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+
+.p-CommandPalette-item {
+  display: flex;
+  flex-direction: row;
+}
+
+
+.p-CommandPalette-itemIcon {
+  flex: 0 0 auto;
+}
+
+
+.p-CommandPalette-itemContent {
+  flex: 1 1 auto;
+  overflow: hidden;
+}
+
+
+.p-CommandPalette-itemShortcut {
+  flex: 0 0 auto;
+}
+
+
+.p-CommandPalette-itemLabel {
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+</style><style type="text/css">/*-----------------------------------------------------------------------------
+| Copyright (c) 2014-2017, PhosphorJS Contributors
+|
+| Distributed under the terms of the BSD 3-Clause License.
+|
+| The full license is in the file LICENSE, distributed with this software.
+|----------------------------------------------------------------------------*/
+
+
+.p-DockPanel {
+  z-index: 0;
+}
+
+
+.p-DockPanel-widget {
+  z-index: 0;
+}
+
+
+.p-DockPanel-tabBar {
+  z-index: 1;
+}
+
+
+.p-DockPanel-handle {
+  z-index: 2;
+}
+
+
+.p-DockPanel-handle.p-mod-hidden {
+  display: none !important;
+}
+
+
+.p-DockPanel-handle:after {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  content: '';
+}
+
+
+.p-DockPanel-handle[data-orientation='horizontal'] {
+  cursor: ew-resize;
+}
+
+
+.p-DockPanel-handle[data-orientation='vertical'] {
+  cursor: ns-resize;
+}
+
+
+.p-DockPanel-handle[data-orientation='horizontal']:after {
+  left: 50%;
+  min-width: 8px;
+  transform: translateX(-50%);
+}
+
+
+.p-DockPanel-handle[data-orientation='vertical']:after {
+  top: 50%;
+  min-height: 8px;
+  transform: translateY(-50%);
+}
+
+
+.p-DockPanel-overlay {
+  z-index: 3;
+  box-sizing: border-box;
+  pointer-events: none;
+}
+
+
+.p-DockPanel-overlay.p-mod-hidden {
+  display: none !important;
+}
+</style><style type="text/css">/*-----------------------------------------------------------------------------
+| Copyright (c) 2014-2017, PhosphorJS Contributors
+|
+| Distributed under the terms of the BSD 3-Clause License.
+|
+| The full license is in the file LICENSE, distributed with this software.
+|----------------------------------------------------------------------------*/
+
+
+.p-Menu {
+  z-index: 10000;
+  position: absolute;
+  white-space: nowrap;
+  overflow-x: hidden;
+  overflow-y: auto;
+  outline: none;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+
+.p-Menu-content {
+  margin: 0;
+  padding: 0;
+  display: table;
+  list-style-type: none;
+}
+
+
+.p-Menu-item {
+  display: table-row;
+}
+
+
+.p-Menu-item.p-mod-hidden,
+.p-Menu-item.p-mod-collapsed {
+  display: none !important;
+}
+
+
+.p-Menu-itemIcon,
+.p-Menu-itemSubmenuIcon {
+  display: table-cell;
+  text-align: center;
+}
+
+
+.p-Menu-itemLabel {
+  display: table-cell;
+  text-align: left;
+}
+
+
+.p-Menu-itemShortcut {
+  display: table-cell;
+  text-align: right;
+}
+</style><style type="text/css">/*-----------------------------------------------------------------------------
+| Copyright (c) 2014-2017, PhosphorJS Contributors
+|
+| Distributed under the terms of the BSD 3-Clause License.
+|
+| The full license is in the file LICENSE, distributed with this software.
+|----------------------------------------------------------------------------*/
+
+
+.p-MenuBar {
+  outline: none;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+
+.p-MenuBar-content {
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: row;
+  list-style-type: none;
+}
+
+
+.p-MenuBar-item {
+  box-sizing: border-box;
+}
+
+
+.p-MenuBar-itemIcon,
+.p-MenuBar-itemLabel {
+  display: inline-block;
+}
+</style><style type="text/css">/*-----------------------------------------------------------------------------
+| Copyright (c) 2014-2017, PhosphorJS Contributors
+|
+| Distributed under the terms of the BSD 3-Clause License.
+|
+| The full license is in the file LICENSE, distributed with this software.
+|----------------------------------------------------------------------------*/
+
+
+.p-ScrollBar {
+  display: flex;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+
+.p-ScrollBar[data-orientation='horizontal'] {
+  flex-direction: row;
+}
+
+
+.p-ScrollBar[data-orientation='vertical'] {
+  flex-direction: column;
+}
+
+
+.p-ScrollBar-button {
+  box-sizing: border-box;
+  flex: 0 0 auto;
+}
+
+
+.p-ScrollBar-track {
+  box-sizing: border-box;
+  position: relative;
+  overflow: hidden;
+  flex: 1 1 auto;
+}
+
+
+.p-ScrollBar-thumb {
+  box-sizing: border-box;
+  position: absolute;
+}
+</style><style type="text/css">/*-----------------------------------------------------------------------------
+| Copyright (c) 2014-2017, PhosphorJS Contributors
+|
+| Distributed under the terms of the BSD 3-Clause License.
+|
+| The full license is in the file LICENSE, distributed with this software.
+|----------------------------------------------------------------------------*/
+
+
+.p-SplitPanel-child {
+  z-index: 0;
+}
+
+
+.p-SplitPanel-handle {
+  z-index: 1;
+}
+
+
+.p-SplitPanel-handle.p-mod-hidden {
+  display: none !important;
+}
+
+
+.p-SplitPanel-handle:after {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  content: '';
+}
+
+
+.p-SplitPanel[data-orientation='horizontal'] > .p-SplitPanel-handle {
+  cursor: ew-resize;
+}
+
+
+.p-SplitPanel[data-orientation='vertical'] > .p-SplitPanel-handle {
+  cursor: ns-resize;
+}
+
+
+.p-SplitPanel[data-orientation='horizontal'] > .p-SplitPanel-handle:after {
+  left: 50%;
+  min-width: 8px;
+  transform: translateX(-50%);
+}
+
+
+.p-SplitPanel[data-orientation='vertical'] > .p-SplitPanel-handle:after {
+  top: 50%;
+  min-height: 8px;
+  transform: translateY(-50%);
+}
+</style><style type="text/css">/*-----------------------------------------------------------------------------
+| Copyright (c) 2014-2017, PhosphorJS Contributors
+|
+| Distributed under the terms of the BSD 3-Clause License.
+|
+| The full license is in the file LICENSE, distributed with this software.
+|----------------------------------------------------------------------------*/
+
+
+.p-TabBar {
+  display: flex;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+
+.p-TabBar[data-orientation='horizontal'] {
+  flex-direction: row;
+}
+
+
+.p-TabBar[data-orientation='vertical'] {
+  flex-direction: column;
+}
+
+
+.p-TabBar-content {
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex: 1 1 auto;
+  list-style-type: none;
+}
+
+
+.p-TabBar[data-orientation='horizontal'] > .p-TabBar-content {
+  flex-direction: row;
+}
+
+
+.p-TabBar[data-orientation='vertical'] > .p-TabBar-content {
+  flex-direction: column;
+}
+
+
+.p-TabBar-tab {
+  display: flex;
+  flex-direction: row;
+  box-sizing: border-box;
+  overflow: hidden;
+}
+
+
+.p-TabBar-tabIcon,
+.p-TabBar-tabCloseIcon {
+  flex: 0 0 auto;
+}
+
+
+.p-TabBar-tabLabel {
+  flex: 1 1 auto;
+  overflow: hidden;
+  white-space: nowrap;
+}
+
+
+.p-TabBar-tab.p-mod-hidden {
+  display: none !important;
+}
+
+
+.p-TabBar.p-mod-dragging .p-TabBar-tab {
+  position: relative;
+}
+
+
+.p-TabBar.p-mod-dragging[data-orientation='horizontal'] .p-TabBar-tab {
+  left: 0;
+  transition: left 150ms ease;
+}
+
+
+.p-TabBar.p-mod-dragging[data-orientation='vertical'] .p-TabBar-tab {
+  top: 0;
+  transition: top 150ms ease;
+}
+
+
+.p-TabBar.p-mod-dragging .p-TabBar-tab.p-mod-dragging {
+  transition: none;
+}
+</style><style type="text/css">/*-----------------------------------------------------------------------------
+| Copyright (c) 2014-2017, PhosphorJS Contributors
+|
+| Distributed under the terms of the BSD 3-Clause License.
+|
+| The full license is in the file LICENSE, distributed with this software.
+|----------------------------------------------------------------------------*/
+
+
+.p-TabPanel-tabBar {
+  z-index: 1;
+}
+
+
+.p-TabPanel-stackedPanel {
+  z-index: 0;
+}
+</style><style type="text/css">/*-----------------------------------------------------------------------------
+| Copyright (c) 2014-2017, PhosphorJS Contributors
+|
+| Distributed under the terms of the BSD 3-Clause License.
+|
+| The full license is in the file LICENSE, distributed with this software.
+|----------------------------------------------------------------------------*/
+</style><style type="text/css">/* Copyright (c) Jupyter Development Team.
+ * Distributed under the terms of the Modified BSD License.
+ */
+
+ .jupyter-widgets-disconnected::before {
+    content: "\f127"; /* chain-broken */
+    display: inline-block;
+    font: normal normal normal 14px/1 FontAwesome;
+    font-size: inherit;
+    text-rendering: auto;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    color: #d9534f;
+    padding: 3px;
+    align-self: flex-start;
+}
+</style><style type="text/css">/**
+ * The material design colors are adapted from google-material-color v1.2.6
+ * https://github.com/danlevan/google-material-color
+ * https://github.com/danlevan/google-material-color/blob/f67ca5f4028b2f1b34862f64b0ca67323f91b088/dist/palette.var.css
+ *
+ * The license for the material design color CSS variables is as follows (see
+ * https://github.com/danlevan/google-material-color/blob/f67ca5f4028b2f1b34862f64b0ca67323f91b088/LICENSE)
+ *
+ * The MIT License (MIT)
+ *
+ * Copyright (c) 2014 Dan Le Van
+ *
+ * Permission is hereby granted, free of charge, to any person obtaining a copy
+ * of this software and associated documentation files (the "Software"), to deal
+ * in the Software without restriction, including without limitation the rights
+ * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ * copies of the Software, and to permit persons to whom the Software is
+ * furnished to do so, subject to the following conditions:
+ *
+ * The above copyright notice and this permission notice shall be included in
+ * all copies or substantial portions of the Software.
+ *
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+ * SOFTWARE.
+ */
+:root {
+  --md-red-50: #FFEBEE;
+  --md-red-100: #FFCDD2;
+  --md-red-200: #EF9A9A;
+  --md-red-300: #E57373;
+  --md-red-400: #EF5350;
+  --md-red-500: #F44336;
+  --md-red-600: #E53935;
+  --md-red-700: #D32F2F;
+  --md-red-800: #C62828;
+  --md-red-900: #B71C1C;
+  --md-red-A100: #FF8A80;
+  --md-red-A200: #FF5252;
+  --md-red-A400: #FF1744;
+  --md-red-A700: #D50000;
+
+  --md-pink-50: #FCE4EC;
+  --md-pink-100: #F8BBD0;
+  --md-pink-200: #F48FB1;
+  --md-pink-300: #F06292;
+  --md-pink-400: #EC407A;
+  --md-pink-500: #E91E63;
+  --md-pink-600: #D81B60;
+  --md-pink-700: #C2185B;
+  --md-pink-800: #AD1457;
+  --md-pink-900: #880E4F;
+  --md-pink-A100: #FF80AB;
+  --md-pink-A200: #FF4081;
+  --md-pink-A400: #F50057;
+  --md-pink-A700: #C51162;
+
+  --md-purple-50: #F3E5F5;
+  --md-purple-100: #E1BEE7;
+  --md-purple-200: #CE93D8;
+  --md-purple-300: #BA68C8;
+  --md-purple-400: #AB47BC;
+  --md-purple-500: #9C27B0;
+  --md-purple-600: #8E24AA;
+  --md-purple-700: #7B1FA2;
+  --md-purple-800: #6A1B9A;
+  --md-purple-900: #4A148C;
+  --md-purple-A100: #EA80FC;
+  --md-purple-A200: #E040FB;
+  --md-purple-A400: #D500F9;
+  --md-purple-A700: #AA00FF;
+
+  --md-deep-purple-50: #EDE7F6;
+  --md-deep-purple-100: #D1C4E9;
+  --md-deep-purple-200: #B39DDB;
+  --md-deep-purple-300: #9575CD;
+  --md-deep-purple-400: #7E57C2;
+  --md-deep-purple-500: #673AB7;
+  --md-deep-purple-600: #5E35B1;
+  --md-deep-purple-700: #512DA8;
+  --md-deep-purple-800: #4527A0;
+  --md-deep-purple-900: #311B92;
+  --md-deep-purple-A100: #B388FF;
+  --md-deep-purple-A200: #7C4DFF;
+  --md-deep-purple-A400: #651FFF;
+  --md-deep-purple-A700: #6200EA;
+
+  --md-indigo-50: #E8EAF6;
+  --md-indigo-100: #C5CAE9;
+  --md-indigo-200: #9FA8DA;
+  --md-indigo-300: #7986CB;
+  --md-indigo-400: #5C6BC0;
+  --md-indigo-500: #3F51B5;
+  --md-indigo-600: #3949AB;
+  --md-indigo-700: #303F9F;
+  --md-indigo-800: #283593;
+  --md-indigo-900: #1A237E;
+  --md-indigo-A100: #8C9EFF;
+  --md-indigo-A200: #536DFE;
+  --md-indigo-A400: #3D5AFE;
+  --md-indigo-A700: #304FFE;
+
+  --md-blue-50: #E3F2FD;
+  --md-blue-100: #BBDEFB;
+  --md-blue-200: #90CAF9;
+  --md-blue-300: #64B5F6;
+  --md-blue-400: #42A5F5;
+  --md-blue-500: #2196F3;
+  --md-blue-600: #1E88E5;
+  --md-blue-700: #1976D2;
+  --md-blue-800: #1565C0;
+  --md-blue-900: #0D47A1;
+  --md-blue-A100: #82B1FF;
+  --md-blue-A200: #448AFF;
+  --md-blue-A400: #2979FF;
+  --md-blue-A700: #2962FF;
+
+  --md-light-blue-50: #E1F5FE;
+  --md-light-blue-100: #B3E5FC;
+  --md-light-blue-200: #81D4FA;
+  --md-light-blue-300: #4FC3F7;
+  --md-light-blue-400: #29B6F6;
+  --md-light-blue-500: #03A9F4;
+  --md-light-blue-600: #039BE5;
+  --md-light-blue-700: #0288D1;
+  --md-light-blue-800: #0277BD;
+  --md-light-blue-900: #01579B;
+  --md-light-blue-A100: #80D8FF;
+  --md-light-blue-A200: #40C4FF;
+  --md-light-blue-A400: #00B0FF;
+  --md-light-blue-A700: #0091EA;
+
+  --md-cyan-50: #E0F7FA;
+  --md-cyan-100: #B2EBF2;
+  --md-cyan-200: #80DEEA;
+  --md-cyan-300: #4DD0E1;
+  --md-cyan-400: #26C6DA;
+  --md-cyan-500: #00BCD4;
+  --md-cyan-600: #00ACC1;
+  --md-cyan-700: #0097A7;
+  --md-cyan-800: #00838F;
+  --md-cyan-900: #006064;
+  --md-cyan-A100: #84FFFF;
+  --md-cyan-A200: #18FFFF;
+  --md-cyan-A400: #00E5FF;
+  --md-cyan-A700: #00B8D4;
+
+  --md-teal-50: #E0F2F1;
+  --md-teal-100: #B2DFDB;
+  --md-teal-200: #80CBC4;
+  --md-teal-300: #4DB6AC;
+  --md-teal-400: #26A69A;
+  --md-teal-500: #009688;
+  --md-teal-600: #00897B;
+  --md-teal-700: #00796B;
+  --md-teal-800: #00695C;
+  --md-teal-900: #004D40;
+  --md-teal-A100: #A7FFEB;
+  --md-teal-A200: #64FFDA;
+  --md-teal-A400: #1DE9B6;
+  --md-teal-A700: #00BFA5;
+
+  --md-green-50: #E8F5E9;
+  --md-green-100: #C8E6C9;
+  --md-green-200: #A5D6A7;
+  --md-green-300: #81C784;
+  --md-green-400: #66BB6A;
+  --md-green-500: #4CAF50;
+  --md-green-600: #43A047;
+  --md-green-700: #388E3C;
+  --md-green-800: #2E7D32;
+  --md-green-900: #1B5E20;
+  --md-green-A100: #B9F6CA;
+  --md-green-A200: #69F0AE;
+  --md-green-A400: #00E676;
+  --md-green-A700: #00C853;
+
+  --md-light-green-50: #F1F8E9;
+  --md-light-green-100: #DCEDC8;
+  --md-light-green-200: #C5E1A5;
+  --md-light-green-300: #AED581;
+  --md-light-green-400: #9CCC65;
+  --md-light-green-500: #8BC34A;
+  --md-light-green-600: #7CB342;
+  --md-light-green-700: #689F38;
+  --md-light-green-800: #558B2F;
+  --md-light-green-900: #33691E;
+  --md-light-green-A100: #CCFF90;
+  --md-light-green-A200: #B2FF59;
+  --md-light-green-A400: #76FF03;
+  --md-light-green-A700: #64DD17;
+
+  --md-lime-50: #F9FBE7;
+  --md-lime-100: #F0F4C3;
+  --md-lime-200: #E6EE9C;
+  --md-lime-300: #DCE775;
+  --md-lime-400: #D4E157;
+  --md-lime-500: #CDDC39;
+  --md-lime-600: #C0CA33;
+  --md-lime-700: #AFB42B;
+  --md-lime-800: #9E9D24;
+  --md-lime-900: #827717;
+  --md-lime-A100: #F4FF81;
+  --md-lime-A200: #EEFF41;
+  --md-lime-A400: #C6FF00;
+  --md-lime-A700: #AEEA00;
+
+  --md-yellow-50: #FFFDE7;
+  --md-yellow-100: #FFF9C4;
+  --md-yellow-200: #FFF59D;
+  --md-yellow-300: #FFF176;
+  --md-yellow-400: #FFEE58;
+  --md-yellow-500: #FFEB3B;
+  --md-yellow-600: #FDD835;
+  --md-yellow-700: #FBC02D;
+  --md-yellow-800: #F9A825;
+  --md-yellow-900: #F57F17;
+  --md-yellow-A100: #FFFF8D;
+  --md-yellow-A200: #FFFF00;
+  --md-yellow-A400: #FFEA00;
+  --md-yellow-A700: #FFD600;
+
+  --md-amber-50: #FFF8E1;
+  --md-amber-100: #FFECB3;
+  --md-amber-200: #FFE082;
+  --md-amber-300: #FFD54F;
+  --md-amber-400: #FFCA28;
+  --md-amber-500: #FFC107;
+  --md-amber-600: #FFB300;
+  --md-amber-700: #FFA000;
+  --md-amber-800: #FF8F00;
+  --md-amber-900: #FF6F00;
+  --md-amber-A100: #FFE57F;
+  --md-amber-A200: #FFD740;
+  --md-amber-A400: #FFC400;
+  --md-amber-A700: #FFAB00;
+
+  --md-orange-50: #FFF3E0;
+  --md-orange-100: #FFE0B2;
+  --md-orange-200: #FFCC80;
+  --md-orange-300: #FFB74D;
+  --md-orange-400: #FFA726;
+  --md-orange-500: #FF9800;
+  --md-orange-600: #FB8C00;
+  --md-orange-700: #F57C00;
+  --md-orange-800: #EF6C00;
+  --md-orange-900: #E65100;
+  --md-orange-A100: #FFD180;
+  --md-orange-A200: #FFAB40;
+  --md-orange-A400: #FF9100;
+  --md-orange-A700: #FF6D00;
+
+  --md-deep-orange-50: #FBE9E7;
+  --md-deep-orange-100: #FFCCBC;
+  --md-deep-orange-200: #FFAB91;
+  --md-deep-orange-300: #FF8A65;
+  --md-deep-orange-400: #FF7043;
+  --md-deep-orange-500: #FF5722;
+  --md-deep-orange-600: #F4511E;
+  --md-deep-orange-700: #E64A19;
+  --md-deep-orange-800: #D84315;
+  --md-deep-orange-900: #BF360C;
+  --md-deep-orange-A100: #FF9E80;
+  --md-deep-orange-A200: #FF6E40;
+  --md-deep-orange-A400: #FF3D00;
+  --md-deep-orange-A700: #DD2C00;
+
+  --md-brown-50: #EFEBE9;
+  --md-brown-100: #D7CCC8;
+  --md-brown-200: #BCAAA4;
+  --md-brown-300: #A1887F;
+  --md-brown-400: #8D6E63;
+  --md-brown-500: #795548;
+  --md-brown-600: #6D4C41;
+  --md-brown-700: #5D4037;
+  --md-brown-800: #4E342E;
+  --md-brown-900: #3E2723;
+
+  --md-grey-50: #FAFAFA;
+  --md-grey-100: #F5F5F5;
+  --md-grey-200: #EEEEEE;
+  --md-grey-300: #E0E0E0;
+  --md-grey-400: #BDBDBD;
+  --md-grey-500: #9E9E9E;
+  --md-grey-600: #757575;
+  --md-grey-700: #616161;
+  --md-grey-800: #424242;
+  --md-grey-900: #212121;
+
+  --md-blue-grey-50: #ECEFF1;
+  --md-blue-grey-100: #CFD8DC;
+  --md-blue-grey-200: #B0BEC5;
+  --md-blue-grey-300: #90A4AE;
+  --md-blue-grey-400: #78909C;
+  --md-blue-grey-500: #607D8B;
+  --md-blue-grey-600: #546E7A;
+  --md-blue-grey-700: #455A64;
+  --md-blue-grey-800: #37474F;
+  --md-blue-grey-900: #263238;
+}</style><style type="text/css">/*-----------------------------------------------------------------------------
+| Copyright (c) Jupyter Development Team.
+| Distributed under the terms of the Modified BSD License.
+|----------------------------------------------------------------------------*/
+
+/*
+This file is copied from the JupyterLab project to define default styling for
+when the widget styling is compiled down to eliminate CSS variables. We make one
+change - we comment out the font import below.
+*/
+
+/*
+The following CSS variables define the main, public API for styling JupyterLab.
+These variables should be used by all plugins wherever possible. In other
+words, plugins should not define custom colors, sizes, etc unless absolutely
+necessary. This enables users to change the visual theme of JupyterLab
+by changing these variables.
+
+Many variables appear in an ordered sequence (0,1,2,3). These sequences
+are designed to work well together, so for example, `--jp-border-color1` should
+be used with `--jp-layout-color1`. The numbers have the following meanings:
+
+* 0: super-primary, reserved for special emphasis
+* 1: primary, most important under normal situations
+* 2: secondary, next most important under normal situations
+* 3: tertiary, next most important under normal situations
+
+Throughout JupyterLab, we are mostly following principles from Google's
+Material Design when selecting colors. We are not, however, following
+all of MD as it is not optimized for dense, information rich UIs.
+*/
+
+
+/*
+ * Optional monospace font for input/output prompt.
+ */
+ /* Commented out in ipywidgets since we don't need it. */
+/* @import url('https://fonts.googleapis.com/css?family=Roboto+Mono'); */
+
+/*
+ * Added for compabitility with output area
+ */
+:root {
+  --jp-icon-search: none;
+  --jp-ui-select-caret: none;
+}
+
+
+:root {
+
+  /* Borders
+
+  The following variables, specify the visual styling of borders in JupyterLab.
+   */
+
+  --jp-border-width: 1px;
+  --jp-border-color0: var(--md-grey-700);
+  --jp-border-color1: var(--md-grey-500);
+  --jp-border-color2: var(--md-grey-300);
+  --jp-border-color3: var(--md-grey-100);
+
+  /* UI Fonts
+
+  The UI font CSS variables are used for the typography all of the JupyterLab
+  user interface elements that are not directly user generated content.
+  */
+
+  --jp-ui-font-scale-factor: 1.2;
+  --jp-ui-font-size0: calc(var(--jp-ui-font-size1)/var(--jp-ui-font-scale-factor));
+  --jp-ui-font-size1: 13px; /* Base font size */
+  --jp-ui-font-size2: calc(var(--jp-ui-font-size1)*var(--jp-ui-font-scale-factor));
+  --jp-ui-font-size3: calc(var(--jp-ui-font-size2)*var(--jp-ui-font-scale-factor));
+  --jp-ui-icon-font-size: 14px; /* Ensures px perfect FontAwesome icons */
+  --jp-ui-font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+
+  /* Use these font colors against the corresponding main layout colors.
+     In a light theme, these go from dark to light.
+  */
+
+  --jp-ui-font-color0: rgba(0,0,0,1.0);
+  --jp-ui-font-color1: rgba(0,0,0,0.8);
+  --jp-ui-font-color2: rgba(0,0,0,0.5);
+  --jp-ui-font-color3: rgba(0,0,0,0.3);
+
+  /* Use these against the brand/accent/warn/error colors.
+     These will typically go from light to darker, in both a dark and light theme
+   */
+
+  --jp-inverse-ui-font-color0: rgba(255,255,255,1);
+  --jp-inverse-ui-font-color1: rgba(255,255,255,1.0);
+  --jp-inverse-ui-font-color2: rgba(255,255,255,0.7);
+  --jp-inverse-ui-font-color3: rgba(255,255,255,0.5);
+
+  /* Content Fonts
+
+  Content font variables are used for typography of user generated content.
+  */
+
+  --jp-content-font-size: 13px;
+  --jp-content-line-height: 1.5;
+  --jp-content-font-color0: black;
+  --jp-content-font-color1: black;
+  --jp-content-font-color2: var(--md-grey-700);
+  --jp-content-font-color3: var(--md-grey-500);
+
+  --jp-ui-font-scale-factor: 1.2;
+  --jp-ui-font-size0: calc(var(--jp-ui-font-size1)/var(--jp-ui-font-scale-factor));
+  --jp-ui-font-size1: 13px; /* Base font size */
+  --jp-ui-font-size2: calc(var(--jp-ui-font-size1)*var(--jp-ui-font-scale-factor));
+  --jp-ui-font-size3: calc(var(--jp-ui-font-size2)*var(--jp-ui-font-scale-factor));
+
+  --jp-code-font-size: 13px;
+  --jp-code-line-height: 1.307;
+  --jp-code-padding: 5px;
+  --jp-code-font-family: monospace;
+
+
+  /* Layout
+
+  The following are the main layout colors use in JupyterLab. In a light
+  theme these would go from light to dark.
+  */
+
+  --jp-layout-color0: white;
+  --jp-layout-color1: white;
+  --jp-layout-color2: var(--md-grey-200);
+  --jp-layout-color3: var(--md-grey-400);
+
+  /* Brand/accent */
+
+  --jp-brand-color0: var(--md-blue-700);
+  --jp-brand-color1: var(--md-blue-500);
+  --jp-brand-color2: var(--md-blue-300);
+  --jp-brand-color3: var(--md-blue-100);
+
+  --jp-accent-color0: var(--md-green-700);
+  --jp-accent-color1: var(--md-green-500);
+  --jp-accent-color2: var(--md-green-300);
+  --jp-accent-color3: var(--md-green-100);
+
+  /* State colors (warn, error, success, info) */
+
+  --jp-warn-color0: var(--md-orange-700);
+  --jp-warn-color1: var(--md-orange-500);
+  --jp-warn-color2: var(--md-orange-300);
+  --jp-warn-color3: var(--md-orange-100);
+
+  --jp-error-color0: var(--md-red-700);
+  --jp-error-color1: var(--md-red-500);
+  --jp-error-color2: var(--md-red-300);
+  --jp-error-color3: var(--md-red-100);
+
+  --jp-success-color0: var(--md-green-700);
+  --jp-success-color1: var(--md-green-500);
+  --jp-success-color2: var(--md-green-300);
+  --jp-success-color3: var(--md-green-100);
+
+  --jp-info-color0: var(--md-cyan-700);
+  --jp-info-color1: var(--md-cyan-500);
+  --jp-info-color2: var(--md-cyan-300);
+  --jp-info-color3: var(--md-cyan-100);
+
+  /* Cell specific styles */
+
+  --jp-cell-padding: 5px;
+  --jp-cell-editor-background: #f7f7f7;
+  --jp-cell-editor-border-color: #cfcfcf;
+  --jp-cell-editor-background-edit: var(--jp-ui-layout-color1);
+  --jp-cell-editor-border-color-edit: var(--jp-brand-color1);
+  --jp-cell-prompt-width: 100px;
+  --jp-cell-prompt-font-family: 'Roboto Mono', monospace;
+  --jp-cell-prompt-letter-spacing: 0px;
+  --jp-cell-prompt-opacity: 1.0;
+  --jp-cell-prompt-opacity-not-active: 0.4;
+  --jp-cell-prompt-font-color-not-active: var(--md-grey-700);
+  /* A custom blend of MD grey and blue 600
+   * See https://meyerweb.com/eric/tools/color-blend/#546E7A:1E88E5:5:hex */
+  --jp-cell-inprompt-font-color: #307FC1;
+  /* A custom blend of MD grey and orange 600
+   * https://meyerweb.com/eric/tools/color-blend/#546E7A:F4511E:5:hex */
+  --jp-cell-outprompt-font-color: #BF5B3D;
+
+  /* Notebook specific styles */
+
+  --jp-notebook-padding: 10px;
+  --jp-notebook-scroll-padding: 100px;
+
+  /* Console specific styles */
+
+  --jp-console-background: var(--md-grey-100);
+
+  /* Toolbar specific styles */
+
+  --jp-toolbar-border-color: var(--md-grey-400);
+  --jp-toolbar-micro-height: 8px;
+  --jp-toolbar-background: var(--jp-layout-color0);
+  --jp-toolbar-box-shadow: 0px 0px 2px 0px rgba(0,0,0,0.24);
+  --jp-toolbar-header-margin: 4px 4px 0px 4px;
+  --jp-toolbar-active-background: var(--md-grey-300);
+}
+</style><style type="text/css">/* This file has code derived from PhosphorJS CSS files, as noted below. The license for this PhosphorJS code is:
+
+Copyright (c) 2014-2017, PhosphorJS Contributors
+All rights reserved.
+
+Redistribution and use in source and binary forms, with or without
+modification, are permitted provided that the following conditions are met:
+
+* Redistributions of source code must retain the above copyright notice, this
+  list of conditions and the following disclaimer.
+
+* Redistributions in binary form must reproduce the above copyright notice,
+  this list of conditions and the following disclaimer in the documentation
+  and/or other materials provided with the distribution.
+
+* Neither the name of the copyright holder nor the names of its
+  contributors may be used to endorse or promote products derived from
+  this software without specific prior written permission.
+
+THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
+AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE
+DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE
+FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL
+DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR
+SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER
+CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY,
+OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
+OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+
+*/
+
+/*
+ * The following section is derived from https://github.com/phosphorjs/phosphor/blob/23b9d075ebc5b73ab148b6ebfc20af97f85714c4/packages/widgets/style/tabbar.css 
+ * We've scoped the rules so that they are consistent with exactly our code.
+ */
+
+.jupyter-widgets.widget-tab > .p-TabBar {
+  display: flex;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+
+.jupyter-widgets.widget-tab > .p-TabBar[data-orientation='horizontal'] {
+  flex-direction: row;
+}
+
+
+.jupyter-widgets.widget-tab > .p-TabBar[data-orientation='vertical'] {
+  flex-direction: column;
+}
+
+
+.jupyter-widgets.widget-tab > .p-TabBar > .p-TabBar-content {
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex: 1 1 auto;
+  list-style-type: none;
+}
+
+
+.jupyter-widgets.widget-tab > .p-TabBar[data-orientation='horizontal'] > .p-TabBar-content {
+  flex-direction: row;
+}
+
+
+.jupyter-widgets.widget-tab > .p-TabBar[data-orientation='vertical'] > .p-TabBar-content {
+  flex-direction: column;
+}
+
+
+.jupyter-widgets.widget-tab > .p-TabBar .p-TabBar-tab {
+  display: flex;
+  flex-direction: row;
+  box-sizing: border-box;
+  overflow: hidden;
+}
+
+
+.jupyter-widgets.widget-tab > .p-TabBar .p-TabBar-tabIcon,
+.jupyter-widgets.widget-tab > .p-TabBar .p-TabBar-tabCloseIcon {
+  flex: 0 0 auto;
+}
+
+
+.jupyter-widgets.widget-tab > .p-TabBar .p-TabBar-tabLabel {
+  flex: 1 1 auto;
+  overflow: hidden;
+  white-space: nowrap;
+}
+
+
+.jupyter-widgets.widget-tab > .p-TabBar .p-TabBar-tab.p-mod-hidden {
+  display: none !important;
+}
+
+
+.jupyter-widgets.widget-tab > .p-TabBar.p-mod-dragging .p-TabBar-tab {
+  position: relative;
+}
+
+
+.jupyter-widgets.widget-tab > .p-TabBar.p-mod-dragging[data-orientation='horizontal'] .p-TabBar-tab {
+  left: 0;
+  transition: left 150ms ease;
+}
+
+
+.jupyter-widgets.widget-tab > .p-TabBar.p-mod-dragging[data-orientation='vertical'] .p-TabBar-tab {
+  top: 0;
+  transition: top 150ms ease;
+}
+
+
+.jupyter-widgets.widget-tab > .p-TabBar.p-mod-dragging .p-TabBar-tab.p-mod-dragging {
+  transition: none;
+}
+
+/* End tabbar.css */
+</style><style type="text/css">/* Copyright (c) Jupyter Development Team.
+ * Distributed under the terms of the Modified BSD License.
+ */
+
+/*
+ * We assume that the CSS variables in
+ * https://github.com/jupyterlab/jupyterlab/blob/master/src/default-theme/variables.css
+ * have been defined.
+ */
+
+:root {
+    --jp-widgets-color: var(--jp-content-font-color1);
+    --jp-widgets-label-color: var(--jp-widgets-color);
+    --jp-widgets-readout-color: var(--jp-widgets-color);
+    --jp-widgets-font-size: var(--jp-ui-font-size1);
+    --jp-widgets-margin: 2px;
+    --jp-widgets-inline-height: 28px;
+    --jp-widgets-inline-width: 300px;
+    --jp-widgets-inline-width-short: calc(var(--jp-widgets-inline-width) / 2 - var(--jp-widgets-margin));
+    --jp-widgets-inline-width-tiny: calc(var(--jp-widgets-inline-width-short) / 2 - var(--jp-widgets-margin));
+    --jp-widgets-inline-margin: 4px; /* margin between inline elements */
+    --jp-widgets-inline-label-width: 80px;
+    --jp-widgets-border-width: var(--jp-border-width);
+    --jp-widgets-vertical-height: 200px;
+    --jp-widgets-horizontal-tab-height: 24px;
+    --jp-widgets-horizontal-tab-width: 144px;
+    --jp-widgets-horizontal-tab-top-border: 2px;
+    --jp-widgets-progress-thickness: 20px;
+    --jp-widgets-container-padding: 15px;
+    --jp-widgets-input-padding: 4px;
+    --jp-widgets-radio-item-height-adjustment: 8px;
+    --jp-widgets-radio-item-height: calc(var(--jp-widgets-inline-height) - var(--jp-widgets-radio-item-height-adjustment));
+    --jp-widgets-slider-track-thickness: 4px;
+    --jp-widgets-slider-border-width: var(--jp-widgets-border-width);
+    --jp-widgets-slider-handle-size: 16px;
+    --jp-widgets-slider-handle-border-color: var(--jp-border-color1);
+    --jp-widgets-slider-handle-background-color: var(--jp-layout-color1);
+    --jp-widgets-slider-active-handle-color: var(--jp-brand-color1);
+    --jp-widgets-menu-item-height: 24px;
+    --jp-widgets-dropdown-arrow: url("data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0idXRmLTgiPz4KPCEtLSBHZW5lcmF0b3I6IEFkb2JlIElsbHVzdHJhdG9yIDE5LjIuMSwgU1ZHIEV4cG9ydCBQbHVnLUluIC4gU1ZHIFZlcnNpb246IDYuMDAgQnVpbGQgMCkgIC0tPgo8c3ZnIHZlcnNpb249IjEuMSIgaWQ9IkxheWVyXzEiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgeG1sbnM6eGxpbms9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkveGxpbmsiIHg9IjBweCIgeT0iMHB4IgoJIHZpZXdCb3g9IjAgMCAxOCAxOCIgc3R5bGU9ImVuYWJsZS1iYWNrZ3JvdW5kOm5ldyAwIDAgMTggMTg7IiB4bWw6c3BhY2U9InByZXNlcnZlIj4KPHN0eWxlIHR5cGU9InRleHQvY3NzIj4KCS5zdDB7ZmlsbDpub25lO30KPC9zdHlsZT4KPHBhdGggZD0iTTUuMiw1LjlMOSw5LjdsMy44LTMuOGwxLjIsMS4ybC00LjksNWwtNC45LTVMNS4yLDUuOXoiLz4KPHBhdGggY2xhc3M9InN0MCIgZD0iTTAtMC42aDE4djE4SDBWLTAuNnoiLz4KPC9zdmc+Cg");
+    --jp-widgets-input-color: var(--jp-ui-font-color1);
+    --jp-widgets-input-background-color: var(--jp-layout-color1);
+    --jp-widgets-input-border-color: var(--jp-border-color1);
+    --jp-widgets-input-focus-border-color: var(--jp-brand-color2);
+    --jp-widgets-input-border-width: var(--jp-widgets-border-width);
+    --jp-widgets-disabled-opacity: 0.6;
+
+    /* From Material Design Lite */
+    --md-shadow-key-umbra-opacity: 0.2;
+    --md-shadow-key-penumbra-opacity: 0.14;
+    --md-shadow-ambient-shadow-opacity: 0.12;
+}
+
+.jupyter-widgets {
+    margin: var(--jp-widgets-margin);
+    box-sizing: border-box;
+    color: var(--jp-widgets-color);
+    overflow: visible;
+}
+
+.jupyter-widgets.jupyter-widgets-disconnected::before {
+    line-height: var(--jp-widgets-inline-height);
+    height: var(--jp-widgets-inline-height);
+}
+
+.jp-Output-result > .jupyter-widgets {
+    margin-left: 0;
+    margin-right: 0;
+}
+
+/* vbox and hbox */
+
+.widget-inline-hbox {
+    /* Horizontal widgets */
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: row;
+    align-items: baseline;
+}
+
+.widget-inline-vbox {
+    /* Vertical Widgets */
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.widget-box {
+    box-sizing: border-box;
+    display: flex;
+    margin: 0;
+    overflow: auto;
+}
+
+.widget-gridbox {
+    box-sizing: border-box;
+    display: grid;
+    margin: 0;
+    overflow: auto;
+}
+
+.widget-hbox {
+    flex-direction: row;
+}
+
+.widget-vbox {
+    flex-direction: column;
+}
+
+/* General Button Styling */
+
+.jupyter-button {
+    padding-left: 10px;
+    padding-right: 10px;
+    padding-top: 0px;
+    padding-bottom: 0px;
+    display: inline-block;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    text-align: center;
+    font-size: var(--jp-widgets-font-size);
+    cursor: pointer;
+
+    height: var(--jp-widgets-inline-height);
+    border: 0px solid;
+    line-height: var(--jp-widgets-inline-height);
+    box-shadow: none;
+
+    color: var(--jp-ui-font-color1);
+    background-color: var(--jp-layout-color2);
+    border-color: var(--jp-border-color2);
+    border: none;
+    user-select: none;
+}
+
+.jupyter-button i.fa {
+    margin-right: var(--jp-widgets-inline-margin);
+    pointer-events: none;
+}
+
+.jupyter-button:empty:before {
+    content: "\200b"; /* zero-width space */
+}
+
+.jupyter-widgets.jupyter-button:disabled {
+    opacity: var(--jp-widgets-disabled-opacity);
+}
+
+.jupyter-button i.fa.center {
+    margin-right: 0;
+}
+
+.jupyter-button:hover:enabled, .jupyter-button:focus:enabled {
+    /* MD Lite 2dp shadow */
+    box-shadow: 0 2px 2px 0 rgba(0, 0, 0, var(--md-shadow-key-penumbra-opacity)),
+                0 3px 1px -2px rgba(0, 0, 0, var(--md-shadow-key-umbra-opacity)),
+                0 1px 5px 0 rgba(0, 0, 0, var(--md-shadow-ambient-shadow-opacity));
+}
+
+.jupyter-button:active, .jupyter-button.mod-active {
+    /* MD Lite 4dp shadow */
+    box-shadow: 0 4px 5px 0 rgba(0, 0, 0, var(--md-shadow-key-penumbra-opacity)),
+                0 1px 10px 0 rgba(0, 0, 0, var(--md-shadow-ambient-shadow-opacity)),
+                0 2px 4px -1px rgba(0, 0, 0, var(--md-shadow-key-umbra-opacity));
+    color: var(--jp-ui-font-color1);
+    background-color: var(--jp-layout-color3);
+}
+
+.jupyter-button:focus:enabled {
+    outline: 1px solid var(--jp-widgets-input-focus-border-color);
+}
+
+/* Button "Primary" Styling */
+
+.jupyter-button.mod-primary {
+    color: var(--jp-inverse-ui-font-color1);
+    background-color: var(--jp-brand-color1);
+}
+
+.jupyter-button.mod-primary.mod-active {
+    color: var(--jp-inverse-ui-font-color0);
+    background-color: var(--jp-brand-color0);
+}
+
+.jupyter-button.mod-primary:active {
+    color: var(--jp-inverse-ui-font-color0);
+    background-color: var(--jp-brand-color0);
+}
+
+/* Button "Success" Styling */
+
+.jupyter-button.mod-success {
+    color: var(--jp-inverse-ui-font-color1);
+    background-color: var(--jp-success-color1);
+}
+
+.jupyter-button.mod-success.mod-active {
+    color: var(--jp-inverse-ui-font-color0);
+    background-color: var(--jp-success-color0);
+ }
+
+.jupyter-button.mod-success:active {
+    color: var(--jp-inverse-ui-font-color0);
+    background-color: var(--jp-success-color0);
+ }
+
+ /* Button "Info" Styling */
+
+.jupyter-button.mod-info {
+    color: var(--jp-inverse-ui-font-color1);
+    background-color: var(--jp-info-color1);
+}
+
+.jupyter-button.mod-info.mod-active {
+    color: var(--jp-inverse-ui-font-color0);
+    background-color: var(--jp-info-color0);
+}
+
+.jupyter-button.mod-info:active {
+    color: var(--jp-inverse-ui-font-color0);
+    background-color: var(--jp-info-color0);
+}
+
+/* Button "Warning" Styling */
+
+.jupyter-button.mod-warning {
+    color: var(--jp-inverse-ui-font-color1);
+    background-color: var(--jp-warn-color1);
+}
+
+.jupyter-button.mod-warning.mod-active {
+    color: var(--jp-inverse-ui-font-color0);
+    background-color: var(--jp-warn-color0);
+}
+
+.jupyter-button.mod-warning:active {
+    color: var(--jp-inverse-ui-font-color0);
+    background-color: var(--jp-warn-color0);
+}
+
+/* Button "Danger" Styling */
+
+.jupyter-button.mod-danger {
+    color: var(--jp-inverse-ui-font-color1);
+    background-color: var(--jp-error-color1);
+}
+
+.jupyter-button.mod-danger.mod-active {
+    color: var(--jp-inverse-ui-font-color0);
+    background-color: var(--jp-error-color0);
+}
+
+.jupyter-button.mod-danger:active {
+    color: var(--jp-inverse-ui-font-color0);
+    background-color: var(--jp-error-color0);
+}
+
+/* Widget Button, Widget Toggle Button, Widget Upload */
+
+.widget-button, .widget-toggle-button, .widget-upload {
+    width: var(--jp-widgets-inline-width-short);
+}
+
+/* Widget Label Styling */
+
+/* Override Bootstrap label css */
+.jupyter-widgets label {
+    margin-bottom: initial;
+}
+
+.widget-label-basic {
+    /* Basic Label */
+    color: var(--jp-widgets-label-color);
+    font-size: var(--jp-widgets-font-size);
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    line-height: var(--jp-widgets-inline-height);
+}
+
+.widget-label {
+    /* Label */
+    color: var(--jp-widgets-label-color);
+    font-size: var(--jp-widgets-font-size);
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    line-height: var(--jp-widgets-inline-height);
+}
+
+.widget-inline-hbox .widget-label {
+    /* Horizontal Widget Label */
+    color: var(--jp-widgets-label-color);
+    text-align: right;
+    margin-right: calc( var(--jp-widgets-inline-margin) * 2 );
+    width: var(--jp-widgets-inline-label-width);
+    flex-shrink: 0;
+}
+
+.widget-inline-vbox .widget-label {
+    /* Vertical Widget Label */
+    color: var(--jp-widgets-label-color);
+    text-align: center;
+    line-height: var(--jp-widgets-inline-height);
+}
+
+/* Widget Readout Styling */
+
+.widget-readout {
+    color: var(--jp-widgets-readout-color);
+    font-size: var(--jp-widgets-font-size);
+    height: var(--jp-widgets-inline-height);
+    line-height: var(--jp-widgets-inline-height);
+    overflow: hidden;
+    white-space: nowrap;
+    text-align: center;
+}
+
+.widget-readout.overflow {
+    /* Overflowing Readout */
+
+    /* From Material Design Lite
+        shadow-key-umbra-opacity: 0.2;
+        shadow-key-penumbra-opacity: 0.14;
+        shadow-ambient-shadow-opacity: 0.12;
+     */
+    -webkit-box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.2),
+                        0 3px 1px -2px rgba(0, 0, 0, 0.14),
+                        0 1px 5px 0 rgba(0, 0, 0, 0.12);
+
+    -moz-box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.2),
+                     0 3px 1px -2px rgba(0, 0, 0, 0.14),
+                     0 1px 5px 0 rgba(0, 0, 0, 0.12);
+
+    box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.2),
+                0 3px 1px -2px rgba(0, 0, 0, 0.14),
+                0 1px 5px 0 rgba(0, 0, 0, 0.12);
+}
+
+.widget-inline-hbox .widget-readout {
+    /* Horizontal Readout */
+    text-align: center;
+    max-width: var(--jp-widgets-inline-width-short);
+    min-width: var(--jp-widgets-inline-width-tiny);
+    margin-left: var(--jp-widgets-inline-margin);
+}
+
+.widget-inline-vbox .widget-readout {
+    /* Vertical Readout */
+    margin-top: var(--jp-widgets-inline-margin);
+    /* as wide as the widget */
+    width: inherit;
+}
+
+/* Widget Checkbox Styling */
+
+.widget-checkbox {
+    width: var(--jp-widgets-inline-width);
+    height: var(--jp-widgets-inline-height);
+    line-height: var(--jp-widgets-inline-height);
+}
+
+.widget-checkbox input[type="checkbox"] {
+    margin: 0px calc( var(--jp-widgets-inline-margin) * 2 ) 0px 0px;
+    line-height: var(--jp-widgets-inline-height);
+    font-size: large;
+    flex-grow: 1;
+    flex-shrink: 0;
+    align-self: center;
+}
+
+/* Widget Valid Styling */
+
+.widget-valid {
+    height: var(--jp-widgets-inline-height);
+    line-height: var(--jp-widgets-inline-height);
+    width: var(--jp-widgets-inline-width-short);
+    font-size: var(--jp-widgets-font-size);
+}
+
+.widget-valid i:before {
+    line-height: var(--jp-widgets-inline-height);
+    margin-right: var(--jp-widgets-inline-margin);
+    margin-left: var(--jp-widgets-inline-margin);
+
+    /* from the fa class in FontAwesome: https://github.com/FortAwesome/Font-Awesome/blob/49100c7c3a7b58d50baa71efef11af41a66b03d3/css/font-awesome.css#L14 */
+    display: inline-block;
+    font: normal normal normal 14px/1 FontAwesome;
+    font-size: inherit;
+    text-rendering: auto;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+.widget-valid.mod-valid i:before {
+    content: "\f00c";
+    color: green;
+}
+
+.widget-valid.mod-invalid i:before {
+    content: "\f00d";
+    color: red;
+}
+
+.widget-valid.mod-valid .widget-valid-readout {
+    display: none;
+}
+
+/* Widget Text and TextArea Stying */
+
+.widget-textarea, .widget-text {
+    width: var(--jp-widgets-inline-width);
+}
+
+.widget-text input[type="text"], .widget-text input[type="number"]{
+    height: var(--jp-widgets-inline-height);
+    line-height: var(--jp-widgets-inline-height);
+}
+
+.widget-text input[type="text"]:disabled, .widget-text input[type="number"]:disabled, .widget-textarea textarea:disabled {
+    opacity: var(--jp-widgets-disabled-opacity);
+}
+
+.widget-text input[type="text"], .widget-text input[type="number"], .widget-textarea textarea {
+    box-sizing: border-box;
+    border: var(--jp-widgets-input-border-width) solid var(--jp-widgets-input-border-color);
+    background-color: var(--jp-widgets-input-background-color);
+    color: var(--jp-widgets-input-color);
+    font-size: var(--jp-widgets-font-size);
+    flex-grow: 1;
+    min-width: 0; /* This makes it possible for the flexbox to shrink this input */
+    flex-shrink: 1;
+    outline: none !important;
+}
+    
+.widget-text input[type="text"], .widget-textarea textarea {
+    padding: var(--jp-widgets-input-padding) calc( var(--jp-widgets-input-padding) *  2);
+}
+
+.widget-text input[type="number"] {
+    padding: var(--jp-widgets-input-padding) 0 var(--jp-widgets-input-padding) calc(var(--jp-widgets-input-padding) *  2);
+}
+
+.widget-textarea textarea {
+    height: inherit;
+    width: inherit;
+}
+
+.widget-text input:focus, .widget-textarea textarea:focus {
+    border-color: var(--jp-widgets-input-focus-border-color);
+}
+
+/* Widget Slider */
+
+.widget-slider .ui-slider {
+    /* Slider Track */
+    border: var(--jp-widgets-slider-border-width) solid var(--jp-layout-color3);
+    background: var(--jp-layout-color3);
+    box-sizing: border-box;
+    position: relative;
+    border-radius: 0px;
+}
+
+.widget-slider .ui-slider .ui-slider-handle {
+    /* Slider Handle */
+    outline: none !important; /* focused slider handles are colored - see below */
+    position: absolute;
+    background-color: var(--jp-widgets-slider-handle-background-color);
+    border: var(--jp-widgets-slider-border-width) solid var(--jp-widgets-slider-handle-border-color);
+    box-sizing: border-box;
+    z-index: 1;
+    background-image: none; /* Override jquery-ui */
+}
+
+/* Override jquery-ui */
+.widget-slider .ui-slider .ui-slider-handle:hover, .widget-slider .ui-slider .ui-slider-handle:focus {
+    background-color: var(--jp-widgets-slider-active-handle-color);
+    border: var(--jp-widgets-slider-border-width) solid var(--jp-widgets-slider-active-handle-color);
+}
+
+.widget-slider .ui-slider .ui-slider-handle:active {
+    background-color: var(--jp-widgets-slider-active-handle-color);
+    border-color: var(--jp-widgets-slider-active-handle-color);
+    z-index: 2;
+    transform: scale(1.2);
+}
+
+.widget-slider  .ui-slider .ui-slider-range {
+    /* Interval between the two specified value of a double slider */
+    position: absolute;
+    background: var(--jp-widgets-slider-active-handle-color);
+    z-index: 0;
+}
+
+/* Shapes of Slider Handles */
+
+.widget-hslider .ui-slider .ui-slider-handle {
+    width: var(--jp-widgets-slider-handle-size);
+    height: var(--jp-widgets-slider-handle-size);
+    margin-top: calc((var(--jp-widgets-slider-track-thickness) - var(--jp-widgets-slider-handle-size)) / 2 - var(--jp-widgets-slider-border-width));
+    margin-left: calc(var(--jp-widgets-slider-handle-size) / -2 + var(--jp-widgets-slider-border-width));
+    border-radius: 50%;
+    top: 0;
+}
+
+.widget-vslider .ui-slider .ui-slider-handle {
+    width: var(--jp-widgets-slider-handle-size);
+    height: var(--jp-widgets-slider-handle-size);
+    margin-bottom: calc(var(--jp-widgets-slider-handle-size) / -2 + var(--jp-widgets-slider-border-width));
+    margin-left: calc((var(--jp-widgets-slider-track-thickness) - var(--jp-widgets-slider-handle-size)) / 2 - var(--jp-widgets-slider-border-width));
+    border-radius: 50%;
+    left: 0;
+}
+
+.widget-hslider .ui-slider .ui-slider-range {
+    height: calc( var(--jp-widgets-slider-track-thickness) * 2 );
+    margin-top: calc((var(--jp-widgets-slider-track-thickness) - var(--jp-widgets-slider-track-thickness) * 2 ) / 2 - var(--jp-widgets-slider-border-width));
+}
+
+.widget-vslider .ui-slider .ui-slider-range {
+    width: calc( var(--jp-widgets-slider-track-thickness) * 2 );
+    margin-left: calc((var(--jp-widgets-slider-track-thickness) - var(--jp-widgets-slider-track-thickness) * 2 ) / 2 - var(--jp-widgets-slider-border-width));
+}
+
+/* Horizontal Slider */
+
+.widget-hslider {
+    width: var(--jp-widgets-inline-width);
+    height: var(--jp-widgets-inline-height);
+    line-height: var(--jp-widgets-inline-height);
+
+    /* Override the align-items baseline. This way, the description and readout
+    still seem to align their baseline properly, and we don't have to have
+    align-self: stretch in the .slider-container. */
+    align-items: center;
+}
+
+.widgets-slider .slider-container {
+    overflow: visible;
+}
+
+.widget-hslider .slider-container {
+    height: var(--jp-widgets-inline-height);
+    margin-left: calc(var(--jp-widgets-slider-handle-size) / 2 - 2 * var(--jp-widgets-slider-border-width));
+    margin-right: calc(var(--jp-widgets-slider-handle-size) / 2 - 2 * var(--jp-widgets-slider-border-width));
+    flex: 1 1 var(--jp-widgets-inline-width-short);
+}
+
+.widget-hslider .ui-slider {
+    /* Inner, invisible slide div */
+    height: var(--jp-widgets-slider-track-thickness);
+    margin-top: calc((var(--jp-widgets-inline-height) - var(--jp-widgets-slider-track-thickness)) / 2);
+    width: 100%;
+}
+
+/* Vertical Slider */
+
+.widget-vbox .widget-label {
+    height: var(--jp-widgets-inline-height);
+    line-height: var(--jp-widgets-inline-height);
+}
+
+.widget-vslider {
+    /* Vertical Slider */
+    height: var(--jp-widgets-vertical-height);
+    width: var(--jp-widgets-inline-width-tiny);
+}
+
+.widget-vslider .slider-container {
+    flex: 1 1 var(--jp-widgets-inline-width-short);
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: calc(var(--jp-widgets-slider-handle-size) / 2 - 2 * var(--jp-widgets-slider-border-width));
+    margin-top: calc(var(--jp-widgets-slider-handle-size) / 2 - 2 * var(--jp-widgets-slider-border-width));
+    display: flex;
+    flex-direction: column;
+}
+
+.widget-vslider .ui-slider-vertical {
+    /* Inner, invisible slide div */
+    width: var(--jp-widgets-slider-track-thickness);
+    flex-grow: 1;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/* Widget Progress Styling */
+
+.progress-bar {
+    -webkit-transition: none;
+    -moz-transition: none;
+    -ms-transition: none;
+    -o-transition: none;
+    transition: none;
+}
+
+.progress-bar {
+    height: var(--jp-widgets-inline-height);
+}
+
+.progress-bar {
+    background-color: var(--jp-brand-color1);
+}
+
+.progress-bar-success {
+    background-color: var(--jp-success-color1);
+}
+
+.progress-bar-info {
+    background-color: var(--jp-info-color1);
+}
+
+.progress-bar-warning {
+    background-color: var(--jp-warn-color1);
+}
+
+.progress-bar-danger {
+    background-color: var(--jp-error-color1);
+}
+
+.progress {
+    background-color: var(--jp-layout-color2);
+    border: none;
+    box-shadow: none;
+}
+
+/* Horisontal Progress */
+
+.widget-hprogress {
+    /* Progress Bar */
+    height: var(--jp-widgets-inline-height);
+    line-height: var(--jp-widgets-inline-height);
+    width: var(--jp-widgets-inline-width);
+    align-items: center;
+
+}
+
+.widget-hprogress .progress {
+    flex-grow: 1;
+    margin-top: var(--jp-widgets-input-padding);
+    margin-bottom: var(--jp-widgets-input-padding);
+    align-self: stretch;
+    /* Override bootstrap style */
+    height: initial;
+}
+
+/* Vertical Progress */
+
+.widget-vprogress {
+    height: var(--jp-widgets-vertical-height);
+    width: var(--jp-widgets-inline-width-tiny);
+}
+
+.widget-vprogress .progress {
+    flex-grow: 1;
+    width: var(--jp-widgets-progress-thickness);
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 0;
+}
+
+/* Select Widget Styling */
+
+.widget-dropdown {
+    height: var(--jp-widgets-inline-height);
+    width: var(--jp-widgets-inline-width);
+    line-height: var(--jp-widgets-inline-height);
+}
+
+.widget-dropdown > select {
+    padding-right: 20px;
+    border: var(--jp-widgets-input-border-width) solid var(--jp-widgets-input-border-color);
+    border-radius: 0;
+    height: inherit;
+    flex: 1 1 var(--jp-widgets-inline-width-short);
+    min-width: 0; /* This makes it possible for the flexbox to shrink this input */
+    box-sizing: border-box;
+    outline: none !important;
+    box-shadow: none;
+    background-color: var(--jp-widgets-input-background-color);
+    color: var(--jp-widgets-input-color);
+    font-size: var(--jp-widgets-font-size);
+    vertical-align: top;
+    padding-left: calc( var(--jp-widgets-input-padding) * 2);
+	appearance: none;
+	-webkit-appearance: none;
+	-moz-appearance: none;
+    background-repeat: no-repeat;
+	background-size: 20px;
+	background-position: right center;
+    background-image: var(--jp-widgets-dropdown-arrow);
+}
+.widget-dropdown > select:focus {
+    border-color: var(--jp-widgets-input-focus-border-color);
+}
+
+.widget-dropdown > select:disabled {
+    opacity: var(--jp-widgets-disabled-opacity);
+}
+
+/* To disable the dotted border in Firefox around select controls.
+   See http://stackoverflow.com/a/18853002 */
+.widget-dropdown > select:-moz-focusring {
+    color: transparent;
+    text-shadow: 0 0 0 #000;
+}
+
+/* Select and SelectMultiple */
+
+.widget-select {
+    width: var(--jp-widgets-inline-width);
+    line-height: var(--jp-widgets-inline-height);
+
+    /* Because Firefox defines the baseline of a select as the bottom of the
+    control, we align the entire control to the top and add padding to the
+    select to get an approximate first line baseline alignment. */
+    align-items: flex-start;
+}
+
+.widget-select > select {
+    border: var(--jp-widgets-input-border-width) solid var(--jp-widgets-input-border-color);
+    background-color: var(--jp-widgets-input-background-color);
+    color: var(--jp-widgets-input-color);
+    font-size: var(--jp-widgets-font-size);
+    flex: 1 1 var(--jp-widgets-inline-width-short);
+    outline: none !important;
+    overflow: auto;
+    height: inherit;
+
+    /* Because Firefox defines the baseline of a select as the bottom of the
+    control, we align the entire control to the top and add padding to the
+    select to get an approximate first line baseline alignment. */
+    padding-top: 5px;
+}
+
+.widget-select > select:focus {
+    border-color: var(--jp-widgets-input-focus-border-color);
+}
+
+.wiget-select > select > option {
+    padding-left: var(--jp-widgets-input-padding);
+    line-height: var(--jp-widgets-inline-height);
+    /* line-height doesn't work on some browsers for select options */
+    padding-top: calc(var(--jp-widgets-inline-height)-var(--jp-widgets-font-size)/2);
+    padding-bottom: calc(var(--jp-widgets-inline-height)-var(--jp-widgets-font-size)/2);
+}
+
+
+
+/* Toggle Buttons Styling */
+
+.widget-toggle-buttons {
+    line-height: var(--jp-widgets-inline-height);
+}
+
+.widget-toggle-buttons .widget-toggle-button {
+    margin-left: var(--jp-widgets-margin);
+    margin-right: var(--jp-widgets-margin);
+}
+
+.widget-toggle-buttons .jupyter-button:disabled {
+    opacity: var(--jp-widgets-disabled-opacity);
+}
+
+/* Radio Buttons Styling */
+
+.widget-radio {
+    width: var(--jp-widgets-inline-width);
+    line-height: var(--jp-widgets-inline-height);
+}
+
+.widget-radio-box {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    box-sizing: border-box;
+    flex-grow: 1;
+    margin-bottom: var(--jp-widgets-radio-item-height-adjustment);
+}
+
+.widget-radio-box label {
+    height: var(--jp-widgets-radio-item-height);
+    line-height: var(--jp-widgets-radio-item-height);
+    font-size: var(--jp-widgets-font-size);
+}
+
+.widget-radio-box input {
+    height: var(--jp-widgets-radio-item-height);
+    line-height: var(--jp-widgets-radio-item-height);
+    margin: 0 calc( var(--jp-widgets-input-padding) * 2 ) 0 1px;
+    float: left;
+}
+
+/* Color Picker Styling */
+
+.widget-colorpicker {
+    width: var(--jp-widgets-inline-width);
+    height: var(--jp-widgets-inline-height);
+    line-height: var(--jp-widgets-inline-height);
+}
+
+.widget-colorpicker > .widget-colorpicker-input {
+    flex-grow: 1;
+    flex-shrink: 1;
+    min-width: var(--jp-widgets-inline-width-tiny);
+}
+
+.widget-colorpicker input[type="color"] {
+    width: var(--jp-widgets-inline-height);
+    height: var(--jp-widgets-inline-height);
+    padding: 0 2px; /* make the color square actually square on Chrome on OS X */
+    background: var(--jp-widgets-input-background-color);
+    color: var(--jp-widgets-input-color);
+    border: var(--jp-widgets-input-border-width) solid var(--jp-widgets-input-border-color);
+    border-left: none;
+    flex-grow: 0;
+    flex-shrink: 0;
+    box-sizing: border-box;
+    align-self: stretch;
+    outline: none !important;
+}
+
+.widget-colorpicker.concise input[type="color"] {
+    border-left: var(--jp-widgets-input-border-width) solid var(--jp-widgets-input-border-color);
+}
+
+.widget-colorpicker input[type="color"]:focus, .widget-colorpicker input[type="text"]:focus {
+    border-color: var(--jp-widgets-input-focus-border-color);
+}
+
+.widget-colorpicker input[type="text"] {
+    flex-grow: 1;
+    outline: none !important;
+    height: var(--jp-widgets-inline-height);
+    line-height: var(--jp-widgets-inline-height);
+    background: var(--jp-widgets-input-background-color);
+    color: var(--jp-widgets-input-color);
+    border: var(--jp-widgets-input-border-width) solid var(--jp-widgets-input-border-color);
+    font-size: var(--jp-widgets-font-size);
+    padding: var(--jp-widgets-input-padding) calc( var(--jp-widgets-input-padding) *  2 );
+    min-width: 0; /* This makes it possible for the flexbox to shrink this input */
+    flex-shrink: 1;
+    box-sizing: border-box;
+}
+
+.widget-colorpicker input[type="text"]:disabled {
+    opacity: var(--jp-widgets-disabled-opacity);
+}
+
+/* Date Picker Styling */
+
+.widget-datepicker {
+    width: var(--jp-widgets-inline-width);
+    height: var(--jp-widgets-inline-height);
+    line-height: var(--jp-widgets-inline-height);
+}
+
+.widget-datepicker input[type="date"] {
+    flex-grow: 1;
+    flex-shrink: 1;
+    min-width: 0; /* This makes it possible for the flexbox to shrink this input */
+    outline: none !important;
+    height: var(--jp-widgets-inline-height);
+    border: var(--jp-widgets-input-border-width) solid var(--jp-widgets-input-border-color);
+    background-color: var(--jp-widgets-input-background-color);
+    color: var(--jp-widgets-input-color);
+    font-size: var(--jp-widgets-font-size);
+    padding: var(--jp-widgets-input-padding) calc( var(--jp-widgets-input-padding) *  2 );
+    box-sizing: border-box;
+}
+
+.widget-datepicker input[type="date"]:focus {
+    border-color: var(--jp-widgets-input-focus-border-color);
+}
+
+.widget-datepicker input[type="date"]:invalid {
+    border-color: var(--jp-warn-color1);
+}
+
+.widget-datepicker input[type="date"]:disabled {
+    opacity: var(--jp-widgets-disabled-opacity);
+}
+
+/* Play Widget */
+
+.widget-play {
+    width: var(--jp-widgets-inline-width-short);
+    display: flex;
+    align-items: stretch;
+}
+
+.widget-play .jupyter-button {
+    flex-grow: 1;
+    height: auto;
+}
+
+.widget-play .jupyter-button:disabled {
+    opacity: var(--jp-widgets-disabled-opacity);
+}
+
+/* Tab Widget */
+
+.jupyter-widgets.widget-tab {
+    display: flex;
+    flex-direction: column;
+}
+
+.jupyter-widgets.widget-tab > .p-TabBar {
+    /* Necessary so that a tab can be shifted down to overlay the border of the box below. */
+    overflow-x: visible;
+    overflow-y: visible;
+}
+
+.jupyter-widgets.widget-tab > .p-TabBar > .p-TabBar-content {
+    /* Make sure that the tab grows from bottom up */
+    align-items: flex-end;
+    min-width: 0;
+    min-height: 0;
+}
+
+.jupyter-widgets.widget-tab > .widget-tab-contents {
+    width: 100%;
+    box-sizing: border-box;
+    margin: 0;
+    background: var(--jp-layout-color1);
+    color: var(--jp-ui-font-color1);
+    border: var(--jp-border-width) solid var(--jp-border-color1);
+    padding: var(--jp-widgets-container-padding);
+    flex-grow: 1;
+    overflow: auto;
+}
+
+.jupyter-widgets.widget-tab > .p-TabBar {
+    font: var(--jp-widgets-font-size) Helvetica, Arial, sans-serif;
+    min-height: calc(var(--jp-widgets-horizontal-tab-height) + var(--jp-border-width));
+}
+
+.jupyter-widgets.widget-tab > .p-TabBar .p-TabBar-tab {
+    flex: 0 1 var(--jp-widgets-horizontal-tab-width);
+    min-width: 35px;
+    min-height: calc(var(--jp-widgets-horizontal-tab-height) + var(--jp-border-width));
+    line-height: var(--jp-widgets-horizontal-tab-height);
+    margin-left: calc(-1 * var(--jp-border-width));
+    padding: 0px 10px;
+    background: var(--jp-layout-color2);
+    color: var(--jp-ui-font-color2);
+    border: var(--jp-border-width) solid var(--jp-border-color1);
+    border-bottom: none;
+    position: relative;
+}
+
+.jupyter-widgets.widget-tab > .p-TabBar .p-TabBar-tab.p-mod-current {
+    color: var(--jp-ui-font-color0);
+    /* We want the background to match the tab content background */
+    background: var(--jp-layout-color1);
+    min-height: calc(var(--jp-widgets-horizontal-tab-height) + 2 * var(--jp-border-width));
+    transform: translateY(var(--jp-border-width));
+    overflow: visible;
+}
+
+.jupyter-widgets.widget-tab > .p-TabBar .p-TabBar-tab.p-mod-current:before {
+    position: absolute;
+    top: calc(-1 * var(--jp-border-width));
+    left: calc(-1 * var(--jp-border-width));
+    content: '';
+    height: var(--jp-widgets-horizontal-tab-top-border);
+    width: calc(100% + 2 * var(--jp-border-width));
+    background: var(--jp-brand-color1);
+}
+
+.jupyter-widgets.widget-tab > .p-TabBar .p-TabBar-tab:first-child {
+    margin-left: 0;
+}
+
+.jupyter-widgets.widget-tab > .p-TabBar .p-TabBar-tab:hover:not(.p-mod-current) {
+    background: var(--jp-layout-color1);
+    color: var(--jp-ui-font-color1);
+}
+
+.jupyter-widgets.widget-tab > .p-TabBar .p-mod-closable > .p-TabBar-tabCloseIcon {
+    margin-left: 4px;
+}
+
+.jupyter-widgets.widget-tab > .p-TabBar .p-mod-closable > .p-TabBar-tabCloseIcon:before {
+    font-family: FontAwesome;
+    content: '\f00d'; /* close */
+}
+
+.jupyter-widgets.widget-tab > .p-TabBar .p-TabBar-tabIcon,
+.jupyter-widgets.widget-tab > .p-TabBar .p-TabBar-tabLabel,
+.jupyter-widgets.widget-tab > .p-TabBar .p-TabBar-tabCloseIcon {
+    line-height: var(--jp-widgets-horizontal-tab-height);
+}
+
+/* Accordion Widget */
+
+.p-Collapse {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+}
+
+.p-Collapse-header {
+    padding: var(--jp-widgets-input-padding);
+    cursor: pointer;
+    color: var(--jp-ui-font-color2);
+    background-color: var(--jp-layout-color2);
+    border: var(--jp-widgets-border-width) solid var(--jp-border-color1);
+    padding: calc(var(--jp-widgets-container-padding) * 2 / 3) var(--jp-widgets-container-padding);
+    font-weight: bold;
+}
+
+.p-Collapse-header:hover {
+    background-color: var(--jp-layout-color1);
+    color: var(--jp-ui-font-color1);
+}
+
+.p-Collapse-open > .p-Collapse-header {
+    background-color: var(--jp-layout-color1);
+    color: var(--jp-ui-font-color0);
+    cursor: default;
+    border-bottom: none;
+}
+
+.p-Collapse .p-Collapse-header::before {
+    content: '\f0da\00A0';  /* caret-right, non-breaking space */
+    display: inline-block;
+    font: normal normal normal 14px/1 FontAwesome;
+    font-size: inherit;
+    text-rendering: auto;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+.p-Collapse-open > .p-Collapse-header::before {
+    content: '\f0d7\00A0'; /* caret-down, non-breaking space */
+}
+
+.p-Collapse-contents {
+    padding: var(--jp-widgets-container-padding);
+    background-color: var(--jp-layout-color1);
+    color: var(--jp-ui-font-color1);
+    border-left: var(--jp-widgets-border-width) solid var(--jp-border-color1);
+    border-right: var(--jp-widgets-border-width) solid var(--jp-border-color1);
+    border-bottom: var(--jp-widgets-border-width) solid var(--jp-border-color1);
+    overflow: auto;
+}
+
+.p-Accordion {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+}
+
+.p-Accordion .p-Collapse {
+    margin-bottom: 0;
+}
+
+.p-Accordion .p-Collapse + .p-Collapse {
+    margin-top: 4px;
+}
+
+
+
+/* HTML widget */
+
+.widget-html, .widget-htmlmath {
+    font-size: var(--jp-widgets-font-size);
+}
+
+.widget-html > .widget-html-content, .widget-htmlmath > .widget-html-content {
+    /* Fill out the area in the HTML widget */
+    align-self: stretch;
+    flex-grow: 1;
+    flex-shrink: 1;
+    /* Makes sure the baseline is still aligned with other elements */
+    line-height: var(--jp-widgets-inline-height);
+    /* Make it possible to have absolutely-positioned elements in the html */
+    position: relative;
+}
+
+
+/* Image widget  */
+
+.widget-image {
+    max-width: 100%;
+    height: auto;
+}
+</style><style type="text/css">/* Copyright (c) Jupyter Development Team.
+ * Distributed under the terms of the Modified BSD License.
+ */
+</style><style type="text/css">#MathJax_About {position: fixed; left: 50%; width: auto; text-align: center; border: 3px outset; padding: 1em 2em; background-color: #DDDDDD; color: black; cursor: default; font-family: message-box; font-size: 120%; font-style: normal; text-indent: 0; text-transform: none; line-height: normal; letter-spacing: normal; word-spacing: normal; word-wrap: normal; white-space: nowrap; float: none; z-index: 201; border-radius: 15px; -webkit-border-radius: 15px; -moz-border-radius: 15px; -khtml-border-radius: 15px; box-shadow: 0px 10px 20px #808080; -webkit-box-shadow: 0px 10px 20px #808080; -moz-box-shadow: 0px 10px 20px #808080; -khtml-box-shadow: 0px 10px 20px #808080; filter: progid:DXImageTransform.Microsoft.dropshadow(OffX=2, OffY=2, Color='gray', Positive='true')}
+#MathJax_About.MathJax_MousePost {outline: none}
+.MathJax_Menu {position: absolute; background-color: white; color: black; width: auto; padding: 2px; border: 1px solid #CCCCCC; margin: 0; cursor: default; font: menu; text-align: left; text-indent: 0; text-transform: none; line-height: normal; letter-spacing: normal; word-spacing: normal; word-wrap: normal; white-space: nowrap; float: none; z-index: 201; box-shadow: 0px 10px 20px #808080; -webkit-box-shadow: 0px 10px 20px #808080; -moz-box-shadow: 0px 10px 20px #808080; -khtml-box-shadow: 0px 10px 20px #808080; filter: progid:DXImageTransform.Microsoft.dropshadow(OffX=2, OffY=2, Color='gray', Positive='true')}
+.MathJax_MenuItem {padding: 2px 2em; background: transparent}
+.MathJax_MenuArrow {position: absolute; right: .5em; padding-top: .25em; color: #666666; font-size: .75em}
+.MathJax_MenuActive .MathJax_MenuArrow {color: white}
+.MathJax_MenuArrow.RTL {left: .5em; right: auto}
+.MathJax_MenuCheck {position: absolute; left: .7em}
+.MathJax_MenuCheck.RTL {right: .7em; left: auto}
+.MathJax_MenuRadioCheck {position: absolute; left: 1em}
+.MathJax_MenuRadioCheck.RTL {right: 1em; left: auto}
+.MathJax_MenuLabel {padding: 2px 2em 4px 1.33em; font-style: italic}
+.MathJax_MenuRule {border-top: 1px solid #CCCCCC; margin: 4px 1px 0px}
+.MathJax_MenuDisabled {color: GrayText}
+.MathJax_MenuActive {background-color: Highlight; color: HighlightText}
+.MathJax_MenuDisabled:focus, .MathJax_MenuLabel:focus {background-color: #E8E8E8}
+.MathJax_ContextMenu:focus {outline: none}
+.MathJax_ContextMenu .MathJax_MenuItem:focus {outline: none}
+#MathJax_AboutClose {top: .2em; right: .2em}
+.MathJax_Menu .MathJax_MenuClose {top: -10px; left: -10px}
+.MathJax_MenuClose {position: absolute; cursor: pointer; display: inline-block; border: 2px solid #AAA; border-radius: 18px; -webkit-border-radius: 18px; -moz-border-radius: 18px; -khtml-border-radius: 18px; font-family: 'Courier New',Courier; font-size: 24px; color: #F0F0F0}
+.MathJax_MenuClose span {display: block; background-color: #AAA; border: 1.5px solid; border-radius: 18px; -webkit-border-radius: 18px; -moz-border-radius: 18px; -khtml-border-radius: 18px; line-height: 0; padding: 8px 0 6px}
+.MathJax_MenuClose:hover {color: white!important; border: 2px solid #CCC!important}
+.MathJax_MenuClose:hover span {background-color: #CCC!important}
+.MathJax_MenuClose:hover:focus {outline: none}
+</style><link id="favicon" type="image/x-icon" rel="shortcut icon" href="http://localhost:8888/static/base/images/favicon-notebook.ico"><style type="text/css">#MathJax_Zoom {position: absolute; background-color: #F0F0F0; overflow: auto; display: block; z-index: 301; padding: .5em; border: 1px solid black; margin: 0; font-weight: normal; font-style: normal; text-align: left; text-indent: 0; text-transform: none; line-height: normal; letter-spacing: normal; word-spacing: normal; word-wrap: normal; white-space: nowrap; float: none; -webkit-box-sizing: content-box; -moz-box-sizing: content-box; box-sizing: content-box; box-shadow: 5px 5px 15px #AAAAAA; -webkit-box-shadow: 5px 5px 15px #AAAAAA; -moz-box-shadow: 5px 5px 15px #AAAAAA; -khtml-box-shadow: 5px 5px 15px #AAAAAA; filter: progid:DXImageTransform.Microsoft.dropshadow(OffX=2, OffY=2, Color='gray', Positive='true')}
+#MathJax_ZoomOverlay {position: absolute; left: 0; top: 0; z-index: 300; display: inline-block; width: 100%; height: 100%; border: 0; padding: 0; margin: 0; background-color: white; opacity: 0; filter: alpha(opacity=0)}
+#MathJax_ZoomFrame {position: relative; display: inline-block; height: 0; width: 0}
+#MathJax_ZoomEventTrap {position: absolute; left: 0; top: 0; z-index: 302; display: inline-block; border: 0; padding: 0; margin: 0; background-color: white; opacity: 0; filter: alpha(opacity=0)}
+</style></head>
+
+<body class="notebook_app command_mode" data-jupyter-api-token="61c77ff96d22f725382b5ccd6acb5c4f7dbe0a854bd4cce2" data-base-url="/" data-ws-url="" data-notebook-name="exponential%20graphs.ipynb" data-notebook-path="Desktop/Python/exponential%20graphs.ipynb" dir="ltr"><div id="MathJax_Message" style="display: none;"></div>
+
+<noscript>
+    <div id='noscript'>
+      Jupyter Notebook requires JavaScript.<br>
+      Please enable it to proceed. 
+  </div>
+</noscript>
+
+<div id="header" role="navigation" aria-label="Top Menu" style="display: block;">
+  <div id="header-container" class="container">
+  <div id="ipython_notebook" class="nav navbar-brand"><a href="http://localhost:8888/tree?token=61c77ff96d22f725382b5ccd6acb5c4f7dbe0a854bd4cce2" title="dashboard">
+      <img src="./exponential graphs - Jupyter Notebook_files/logo.png" alt="Jupyter Notebook">
+  </a></div>
+
+  
+
+
+<span id="save_widget" class="save_widget">
+    <span id="notebook_name" class="filename">exponential graphs</span>
+    <span class="checkpoint_status" title="Mon, Jul 13, 2020 5:59 PM">Last Checkpoint: a minute ago</span>
+    <span class="autosave_status">(autosaved)</span>
+</span>
+
+
+  
+
+<span id="kernel_logo_widget">
+  
+  <img class="current_kernel_logo" alt="Current Kernel Logo" src="./exponential graphs - Jupyter Notebook_files/logo-64x64.png" title="Python 3" style="display: inline;">
+  
+</span>
+
+
+  
+  
+  
+  
+
+    <span id="login_widget">
+      
+        <button id="logout" class="btn btn-sm navbar-btn">Logout</button>
+      
+    </span>
+
+  
+
+  
+  
+  </div>
+  <div class="header-bar"></div>
+
+  
+<div id="menubar-container" class="container">
+<div id="menubar">
+    <div id="menus" class="navbar navbar-default" role="navigation">
+        <div class="container-fluid">
+            <button type="button" class="btn btn-default navbar-btn navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+              <i class="fa fa-bars"></i>
+              <span class="navbar-text">Menu</span>
+            </button>
+            <p id="kernel_indicator" class="navbar-text indicator_area">
+              <span class="kernel_indicator_name">Python 3</span>
+              <i id="kernel_indicator_icon" class="kernel_idle_icon" title="Kernel Idle"></i>
+            </p>
+            <i id="readonly-indicator" class="navbar-text" title="This notebook is read-only" style="display: none;">
+                <span class="fa-stack">
+                    <i class="fa fa-save fa-stack-1x"></i>
+                    <i class="fa fa-ban fa-stack-2x text-danger"></i>
+                </span>
+            </i>
+            <i id="modal_indicator" class="navbar-text modal_indicator" title="Command Mode"></i>
+            <span id="notification_area"><div id="notification_kernel" class="notification_widget btn btn-xs navbar-btn undefined info" style="display: none;"><span></span></div><div id="notification_notebook" class="notification_widget btn btn-xs navbar-btn" style="display: none;"><span></span></div><div id="notification_trusted" class="notification_widget btn btn-xs navbar-btn" role="button" style=""><span title="Javascript disabled for notebook display">Not Trusted</span></div><div id="notification_widgets" class="notification_widget btn btn-xs navbar-btn" style="display: none;"><span></span></div></span>
+            <div class="navbar-collapse collapse">
+              <ul class="nav navbar-nav">
+                <li class="dropdown"><a href="http://localhost:8888/notebooks/Desktop/Python/exponential%20graphs.ipynb#" id="filelink" aria-haspopup="true" aria-controls="file_menu class=" dropdown-toggle"="" data-toggle="dropdown">File</a>
+                    <ul id="file_menu" class="dropdown-menu" role="menu" aria-labelledby="filelink">
+                        <li id="new_notebook" class="dropdown-submenu" role="none">
+                            <a href="http://localhost:8888/notebooks/Desktop/Python/exponential%20graphs.ipynb#" role="menuitem">New Notebook<span class="sr-only">Toggle Dropdown</span></a>
+                            <ul class="dropdown-menu" id="menu-new-notebook-submenu"><li id="new-notebook-submenu-python3"><a href="http://localhost:8888/notebooks/Desktop/Python/exponential%20graphs.ipynb#">Python 3</a></li></ul>
+                        </li>
+                        <li id="open_notebook" role="none" title="Opens a new window with the Dashboard view">
+                            <a href="http://localhost:8888/notebooks/Desktop/Python/exponential%20graphs.ipynb#" role="menuitem">Open...</a></li>
+                        <!-- <hr/> -->
+                        <li class="divider" role="none"></li>
+                        <li id="copy_notebook" role="none" title="Open a copy of this notebook&#39;s contents and start a new kernel">
+                            <a href="http://localhost:8888/notebooks/Desktop/Python/exponential%20graphs.ipynb#" role="menuitem">Make a Copy...</a></li>
+                        <li id="save_notebook_as" role="none" title="Save a copy of the notebook&#39;s contents and start a new kernel">
+                            <a href="http://localhost:8888/notebooks/Desktop/Python/exponential%20graphs.ipynb#" role="menuitem">Save as...</a></li>
+                        <li id="rename_notebook" role="none"><a href="http://localhost:8888/notebooks/Desktop/Python/exponential%20graphs.ipynb#" role="menuitem">Rename...</a></li>
+                        <li id="save_checkpoint" role="none"><a href="http://localhost:8888/notebooks/Desktop/Python/exponential%20graphs.ipynb#" role="menuitem">Save and Checkpoint</a></li>
+                        <!-- <hr/> -->
+                        <li class="divider" role="none"></li>
+                        <li id="restore_checkpoint" class="dropdown-submenu" role="none"><a href="http://localhost:8888/notebooks/Desktop/Python/exponential%20graphs.ipynb#" role="menuitem">Revert to Checkpoint<span class="sr-only">Toggle Dropdown</span></a>
+                          <ul class="dropdown-menu"><li><a href="http://localhost:8888/notebooks/Desktop/Python/exponential%20graphs.ipynb#">Monday, July 13, 2020 5:59 PM</a></li></ul>
+                        </li>
+                        <li class="divider" role="none"></li>
+                        <li id="print_preview" role="none"><a href="http://localhost:8888/notebooks/Desktop/Python/exponential%20graphs.ipynb#" role="menuitem">Print Preview</a></li>
+                        <li class="dropdown-submenu" role="none"><a href="http://localhost:8888/notebooks/Desktop/Python/exponential%20graphs.ipynb#" role="menuitem">Download as<span class="sr-only">Toggle Dropdown</span></a>
+                            <ul id="download_menu" class="dropdown-menu">
+                                
+                                <li id="download_asciidoc">
+                                    <a href="http://localhost:8888/notebooks/Desktop/Python/exponential%20graphs.ipynb#">AsciiDoc (.asciidoc)</a>
+                                </li>
+                                
+                                <li id="download_html">
+                                    <a href="http://localhost:8888/notebooks/Desktop/Python/exponential%20graphs.ipynb#">HTML (.html)</a>
+                                </li>
+                                
+                                <li id="download_latex">
+                                    <a href="http://localhost:8888/notebooks/Desktop/Python/exponential%20graphs.ipynb#">LaTeX (.tex)</a>
+                                </li>
+                                
+                                <li id="download_markdown">
+                                    <a href="http://localhost:8888/notebooks/Desktop/Python/exponential%20graphs.ipynb#">Markdown (.md)</a>
+                                </li>
+                                
+                                <li id="download_notebook">
+                                    <a href="http://localhost:8888/notebooks/Desktop/Python/exponential%20graphs.ipynb#">Notebook (.ipynb)</a>
+                                </li>
+                                
+                                <li id="download_pdf">
+                                    <a href="http://localhost:8888/notebooks/Desktop/Python/exponential%20graphs.ipynb#">PDF via LaTeX (.pdf)</a>
+                                </li>
+                                
+                                <li id="download_rst">
+                                    <a href="http://localhost:8888/notebooks/Desktop/Python/exponential%20graphs.ipynb#">reST (.rst)</a>
+                                </li>
+                                
+                                <li id="download_script">
+                                    <a href="http://localhost:8888/notebooks/Desktop/Python/exponential%20graphs.ipynb#">Python (.py)</a>
+                                </li>
+                                
+                                <li id="download_slides">
+                                    <a href="http://localhost:8888/notebooks/Desktop/Python/exponential%20graphs.ipynb#">Reveal.js slides (.slides.html)</a>
+                                </li>
+                                
+                            </ul>
+                        </li>
+                        <li class="dropdown-submenu hidden" role="none"><a href="http://localhost:8888/notebooks/Desktop/Python/exponential%20graphs.ipynb#" role="menuitem">Deploy as</a>
+                            <ul id="deploy_menu" class="dropdown-menu"></ul>
+                        </li>
+                        <li class="divider" role="none"></li>
+                        <li id="trust_notebook" role="none" title="Trust the output of this notebook">
+                            <a href="http://localhost:8888/notebooks/Desktop/Python/exponential%20graphs.ipynb#" role="menuitem">Trust Notebook</a></li>
+                        <li class="divider" role="none"></li>
+                        <li id="close_and_halt" role="none" title="Shutdown this notebook&#39;s kernel, and close this window">
+                            <a href="http://localhost:8888/notebooks/Desktop/Python/exponential%20graphs.ipynb#" role="menuitem">Close and Halt</a></li>
+                    </ul>
+                </li>
+
+                <li class="dropdown"><a href="http://localhost:8888/notebooks/Desktop/Python/exponential%20graphs.ipynb#" class="dropdown-toggle" id="editlink" data-toggle="dropdown" aria-haspopup="true" aria-controls="edit_menu">Edit</a>
+                    <ul id="edit_menu" class="dropdown-menu" role="menu" aria-labelledby="editlink">
+                        <li id="cut_cell" role="none"><a href="http://localhost:8888/notebooks/Desktop/Python/exponential%20graphs.ipynb#" role="menuitem">Cut Cells</a></li>
+                        <li id="copy_cell" role="none"><a href="http://localhost:8888/notebooks/Desktop/Python/exponential%20graphs.ipynb#" role="menuitem">Copy Cells</a></li>
+                        <li id="paste_cell_above" class="disabled" role="none"><a href="http://localhost:8888/notebooks/Desktop/Python/exponential%20graphs.ipynb#" role="menuitem" aria-disabled="true">Paste Cells Above</a></li>
+                        <li id="paste_cell_below" class="disabled" role="none"><a href="http://localhost:8888/notebooks/Desktop/Python/exponential%20graphs.ipynb#" role="menuitem" aria-disabled="true">Paste Cells Below</a></li>
+                        <li id="paste_cell_replace" class="disabled" role="none"><a href="http://localhost:8888/notebooks/Desktop/Python/exponential%20graphs.ipynb#" role="menuitem" aria-disabled="true">Paste Cells &amp; Replace</a></li>
+                        <li id="delete_cell" role="none"><a href="http://localhost:8888/notebooks/Desktop/Python/exponential%20graphs.ipynb#" role="menuitem">Delete Cells</a></li>
+                        <li id="undelete_cell" class="disabled" role="none"><a href="http://localhost:8888/notebooks/Desktop/Python/exponential%20graphs.ipynb#" role="menuitem" aria-disabled="true">Undo Delete Cells</a></li>
+                        <li class="divider" role="none"></li>
+                        <li id="split_cell" role="none"><a href="http://localhost:8888/notebooks/Desktop/Python/exponential%20graphs.ipynb#" role="menuitem">Split Cell</a></li>
+                        <li id="merge_cell_above" role="none"><a href="http://localhost:8888/notebooks/Desktop/Python/exponential%20graphs.ipynb#" role="menuitem">Merge Cell Above</a></li>
+                        <li id="merge_cell_below" role="none"><a href="http://localhost:8888/notebooks/Desktop/Python/exponential%20graphs.ipynb#" role="menuitem">Merge Cell Below</a></li>
+                        <li class="divider" role="none"></li>
+                        <li id="move_cell_up" role="none"><a href="http://localhost:8888/notebooks/Desktop/Python/exponential%20graphs.ipynb#" role="menuitem">Move Cell Up</a></li>
+                        <li id="move_cell_down" role="none"><a href="http://localhost:8888/notebooks/Desktop/Python/exponential%20graphs.ipynb#" role="menuitem">Move Cell Down</a></li>
+                        <li class="divider" role="none"></li>
+                        <li id="edit_nb_metadata" role="none"><a href="http://localhost:8888/notebooks/Desktop/Python/exponential%20graphs.ipynb#" role="menuitem">Edit Notebook Metadata</a></li>
+                        <li class="divider" role="none"></li>
+                        <li id="find_and_replace" role="none"><a href="http://localhost:8888/notebooks/Desktop/Python/exponential%20graphs.ipynb#" role="menuitem"> Find and Replace </a></li>
+                        <li class="divider" role="none"></li>
+                        <li id="cut_cell_attachments" role="none"><a href="http://localhost:8888/notebooks/Desktop/Python/exponential%20graphs.ipynb#" role="menuitem">Cut Cell Attachments</a></li>
+                        <li id="copy_cell_attachments" role="none"><a href="http://localhost:8888/notebooks/Desktop/Python/exponential%20graphs.ipynb#" role="menuitem">Copy Cell Attachments</a></li>
+                        <li id="paste_cell_attachments" class="disabled" role="none"><a href="http://localhost:8888/notebooks/Desktop/Python/exponential%20graphs.ipynb#" role="menuitem" aria-disabled="true">Paste Cell Attachments</a></li>
+                        <li class="divider" role="none"></li>
+                        <li id="insert_image" class="disabled" role="none"><a href="http://localhost:8888/notebooks/Desktop/Python/exponential%20graphs.ipynb#" role="menuitem" aria-disabled="true">  Insert Image </a></li>
+                    </ul>
+                </li>
+                <li class="dropdown"><a href="http://localhost:8888/notebooks/Desktop/Python/exponential%20graphs.ipynb#" class="dropdown-toggle" id="viewlink" data-toggle="dropdown" aria-haspopup="true" aria-controls="view_menu">View</a>
+                    <ul id="view_menu" class="dropdown-menu" role="menu" aria-labelledby="viewlink">
+                        <li id="toggle_header" role="none" title="Show/Hide the logo and notebook title (above menu bar)">
+                            <a href="http://localhost:8888/notebooks/Desktop/Python/exponential%20graphs.ipynb#" role="menuitem">Toggle Header</a>
+                        </li>
+                        <li id="toggle_toolbar" role="none" title="Show/Hide the action icons (below menu bar)">
+                            <a href="http://localhost:8888/notebooks/Desktop/Python/exponential%20graphs.ipynb#" role="menuitem">Toggle Toolbar</a>
+                        </li>
+                        <li id="toggle_line_numbers" role="none" title="Show/Hide line numbers in cells">
+                            <a href="http://localhost:8888/notebooks/Desktop/Python/exponential%20graphs.ipynb#" role="menuitem">Toggle Line Numbers</a>
+                        </li>
+                        <li id="menu-cell-toolbar" class="dropdown-submenu" role="none">
+                            <a href="http://localhost:8888/notebooks/Desktop/Python/exponential%20graphs.ipynb#" role="menuitem">Cell Toolbar</a>
+                            <ul class="dropdown-menu" id="menu-cell-toolbar-submenu"><li data-name="None"><a href="http://localhost:8888/notebooks/Desktop/Python/exponential%20graphs.ipynb#">None</a></li><li data-name="Edit%20Metadata"><a href="http://localhost:8888/notebooks/Desktop/Python/exponential%20graphs.ipynb#">Edit Metadata</a></li><li data-name="Raw%20Cell%20Format"><a href="http://localhost:8888/notebooks/Desktop/Python/exponential%20graphs.ipynb#">Raw Cell Format</a></li><li data-name="Slideshow"><a href="http://localhost:8888/notebooks/Desktop/Python/exponential%20graphs.ipynb#">Slideshow</a></li><li data-name="Attachments"><a href="http://localhost:8888/notebooks/Desktop/Python/exponential%20graphs.ipynb#">Attachments</a></li><li data-name="Tags"><a href="http://localhost:8888/notebooks/Desktop/Python/exponential%20graphs.ipynb#">Tags</a></li></ul>
+                        </li>
+                    </ul>
+                </li>
+                <li class="dropdown"><a href="http://localhost:8888/notebooks/Desktop/Python/exponential%20graphs.ipynb#" class="dropdown-toggle" id="insertlink" data-toggle="dropdown" aria-haspopup="true" aria-controls="insert_menu">Insert</a>
+                    <ul id="insert_menu" class="dropdown-menu" role="menu" aria-labelledby="insertlink">
+                        <li id="insert_cell_above" role="none" title="Insert an empty Code cell above the currently active cell">
+                            <a href="http://localhost:8888/notebooks/Desktop/Python/exponential%20graphs.ipynb#" role="menuitem">Insert Cell Above</a></li>
+                        <li id="insert_cell_below" role="none" title="Insert an empty Code cell below the currently active cell">
+                            <a href="http://localhost:8888/notebooks/Desktop/Python/exponential%20graphs.ipynb#" role="menuitem">Insert Cell Below</a></li>
+                    </ul>
+                </li>
+                <li class="dropdown"><a href="http://localhost:8888/notebooks/Desktop/Python/exponential%20graphs.ipynb#" class="dropdown-toggle" data-toggle="dropdown">Cell</a>
+                    <ul id="cell_menu" class="dropdown-menu">
+                        <li id="run_cell" title="Run this cell, and move cursor to the next one">
+                            <a href="http://localhost:8888/notebooks/Desktop/Python/exponential%20graphs.ipynb#">Run Cells</a></li>
+                        <li id="run_cell_select_below" title="Run this cell, select below">
+                            <a href="http://localhost:8888/notebooks/Desktop/Python/exponential%20graphs.ipynb#">Run Cells and Select Below</a></li>
+                        <li id="run_cell_insert_below" title="Run this cell, insert below">
+                            <a href="http://localhost:8888/notebooks/Desktop/Python/exponential%20graphs.ipynb#">Run Cells and Insert Below</a></li>
+                        <li id="run_all_cells" title="Run all cells in the notebook">
+                            <a href="http://localhost:8888/notebooks/Desktop/Python/exponential%20graphs.ipynb#">Run All</a></li>
+                        <li id="run_all_cells_above" title="Run all cells above (but not including) this cell">
+                            <a href="http://localhost:8888/notebooks/Desktop/Python/exponential%20graphs.ipynb#">Run All Above</a></li>
+                        <li id="run_all_cells_below" title="Run this cell and all cells below it">
+                            <a href="http://localhost:8888/notebooks/Desktop/Python/exponential%20graphs.ipynb#">Run All Below</a></li>
+                        <li class="divider"></li>
+                        <li id="change_cell_type" class="dropdown-submenu" title="All cells in the notebook have a cell type. By default, new cells are created as &#39;Code&#39; cells">
+                            <a href="http://localhost:8888/notebooks/Desktop/Python/exponential%20graphs.ipynb#">Cell Type</a>
+                            <ul class="dropdown-menu">
+                              <li id="to_code" title="Contents will be sent to the kernel for execution, and output will display in the footer of cell">
+                                  <a href="http://localhost:8888/notebooks/Desktop/Python/exponential%20graphs.ipynb#">Code</a></li>
+                              <li id="to_markdown" title="Contents will be rendered as HTML and serve as explanatory text">
+                                  <a href="http://localhost:8888/notebooks/Desktop/Python/exponential%20graphs.ipynb#">Markdown</a></li>
+                              <li id="to_raw" title="Contents will pass through nbconvert unmodified">
+                                  <a href="http://localhost:8888/notebooks/Desktop/Python/exponential%20graphs.ipynb#">Raw NBConvert</a></li>
+                            </ul>
+                        </li>
+                        <li class="divider"></li>
+                        <li id="current_outputs" class="dropdown-submenu"><a href="http://localhost:8888/notebooks/Desktop/Python/exponential%20graphs.ipynb#">Current Outputs</a>
+                            <ul class="dropdown-menu">
+                                <li id="toggle_current_output" title="Hide/Show the output of the current cell">
+                                    <a href="http://localhost:8888/notebooks/Desktop/Python/exponential%20graphs.ipynb#">Toggle</a>
+                                </li>
+                                <li id="toggle_current_output_scroll" title="Scroll the output of the current cell">
+                                    <a href="http://localhost:8888/notebooks/Desktop/Python/exponential%20graphs.ipynb#">Toggle Scrolling</a>
+                                </li>
+                                <li id="clear_current_output" title="Clear the output of the current cell">
+                                    <a href="http://localhost:8888/notebooks/Desktop/Python/exponential%20graphs.ipynb#">Clear</a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li id="all_outputs" class="dropdown-submenu"><a href="http://localhost:8888/notebooks/Desktop/Python/exponential%20graphs.ipynb#">All Output</a>
+                            <ul class="dropdown-menu">
+                                <li id="toggle_all_output" title="Hide/Show the output of all cells">
+                                    <a href="http://localhost:8888/notebooks/Desktop/Python/exponential%20graphs.ipynb#">Toggle</a>
+                                </li>
+                                <li id="toggle_all_output_scroll" title="Scroll the output of all cells">
+                                    <a href="http://localhost:8888/notebooks/Desktop/Python/exponential%20graphs.ipynb#">Toggle Scrolling</a>
+                                </li>
+                                <li id="clear_all_output" title="Clear the output of all cells">
+                                    <a href="http://localhost:8888/notebooks/Desktop/Python/exponential%20graphs.ipynb#">Clear</a>
+                                </li>
+                            </ul>
+                        </li>
+                    </ul>
+                </li>
+                <li class="dropdown"><a href="http://localhost:8888/notebooks/Desktop/Python/exponential%20graphs.ipynb#" class="dropdown-toggle" data-toggle="dropdown" id="kernellink">Kernel</a>
+                    <ul id="kernel_menu" class="dropdown-menu" aria-labelledby="kernellink">
+                        <li id="int_kernel" title="Send Keyboard Interrupt (CTRL-C) to the Kernel">
+                            <a href="http://localhost:8888/notebooks/Desktop/Python/exponential%20graphs.ipynb#">Interrupt</a>
+                        </li>
+                        <li id="restart_kernel" title="Restart the Kernel">
+                            <a href="http://localhost:8888/notebooks/Desktop/Python/exponential%20graphs.ipynb#">Restart</a>
+                        </li>
+                        <li id="restart_clear_output" title="Restart the Kernel and clear all output">
+                            <a href="http://localhost:8888/notebooks/Desktop/Python/exponential%20graphs.ipynb#">Restart &amp; Clear Output</a>
+                        </li>
+                        <li id="restart_run_all" title="Restart the Kernel and re-run the notebook">
+                            <a href="http://localhost:8888/notebooks/Desktop/Python/exponential%20graphs.ipynb#">Restart &amp; Run All</a>
+                        </li>
+                        <li id="reconnect_kernel" title="Reconnect to the Kernel">
+                            <a href="http://localhost:8888/notebooks/Desktop/Python/exponential%20graphs.ipynb#">Reconnect</a>
+                        </li>
+                        <li id="shutdown_kernel" title="Shutdown the Kernel">
+                            <a href="http://localhost:8888/notebooks/Desktop/Python/exponential%20graphs.ipynb#">Shutdown</a>
+                        </li>
+                        <li class="divider"></li>
+                        <li id="menu-change-kernel" class="dropdown-submenu">
+                            <a href="http://localhost:8888/notebooks/Desktop/Python/exponential%20graphs.ipynb#">Change kernel</a>
+                            <ul class="dropdown-menu" id="menu-change-kernel-submenu"><li id="kernel-submenu-python3"><a href="http://localhost:8888/notebooks/Desktop/Python/exponential%20graphs.ipynb#">Python 3</a></li></ul>
+                        </li>
+                    </ul>
+                </li>
+                <li class="dropdown"><a href="http://localhost:8888/notebooks/Desktop/Python/exponential%20graphs.ipynb#" data-toggle="dropdown" class="dropdown-toggle">Widgets</a><ul id="widget-submenu" class="dropdown-menu"><li title="Save the notebook with the widget state information for static rendering"><a href="http://localhost:8888/notebooks/Desktop/Python/exponential%20graphs.ipynb#">Save Notebook Widget State</a></li><li title="Clear the widget state information from the notebook"><a href="http://localhost:8888/notebooks/Desktop/Python/exponential%20graphs.ipynb#">Clear Notebook Widget State</a></li><ul class="divider"></ul><li title="Download the widget state as a JSON file"><a href="http://localhost:8888/notebooks/Desktop/Python/exponential%20graphs.ipynb#">Download Widget State</a></li><li title="Embed interactive widgets"><a href="http://localhost:8888/notebooks/Desktop/Python/exponential%20graphs.ipynb#">Embed Widgets</a></li></ul></li><li class="dropdown"><a href="http://localhost:8888/notebooks/Desktop/Python/exponential%20graphs.ipynb#" class="dropdown-toggle" data-toggle="dropdown">Help</a>
+                    <ul id="help_menu" class="dropdown-menu">
+                        
+                        <li id="notebook_tour" title="A quick tour of the notebook user interface"><a href="http://localhost:8888/notebooks/Desktop/Python/exponential%20graphs.ipynb#">User Interface Tour</a></li>
+                        <li id="keyboard_shortcuts" title="Opens a tooltip with all keyboard shortcuts"><a href="http://localhost:8888/notebooks/Desktop/Python/exponential%20graphs.ipynb#">Keyboard Shortcuts</a></li>
+                        <li id="edit_keyboard_shortcuts" title="Opens a dialog allowing you to edit Keyboard shortcuts"><a href="http://localhost:8888/notebooks/Desktop/Python/exponential%20graphs.ipynb#">Edit Keyboard Shortcuts</a></li>
+                        <li class="divider"></li>
+                        
+
+						
+                        
+                            
+                                <li><a rel="noreferrer" href="http://nbviewer.jupyter.org/github/ipython/ipython/blob/3.x/examples/Notebook/Index.ipynb" target="_blank" title="Opens in a new window">
+                                
+                                    <i class="fa fa-external-link menu-icon pull-right"></i>
+                                
+
+                                Notebook Help
+                                </a></li>
+                            
+                                <li><a rel="noreferrer" href="https://help.github.com/articles/markdown-basics/" target="_blank" title="Opens in a new window">
+                                
+                                    <i class="fa fa-external-link menu-icon pull-right"></i>
+                                
+
+                                Markdown
+                                </a></li>
+                            
+                            
+                        
+                        <li id="kernel-help-links" class="divider"></li><li><a target="_blank" title="Opens in a new window" href="https://docs.python.org/3.7?v=20200713165357"><i class="fa fa-external-link menu-icon pull-right"></i><span>Python Reference</span></a></li><li><a target="_blank" title="Opens in a new window" href="https://ipython.org/documentation.html?v=20200713165357"><i class="fa fa-external-link menu-icon pull-right"></i><span>IPython Reference</span></a></li><li><a target="_blank" title="Opens in a new window" href="https://docs.scipy.org/doc/numpy/reference/?v=20200713165357"><i class="fa fa-external-link menu-icon pull-right"></i><span>NumPy Reference</span></a></li><li><a target="_blank" title="Opens in a new window" href="https://docs.scipy.org/doc/scipy/reference/?v=20200713165357"><i class="fa fa-external-link menu-icon pull-right"></i><span>SciPy Reference</span></a></li><li><a target="_blank" title="Opens in a new window" href="https://matplotlib.org/contents.html?v=20200713165357"><i class="fa fa-external-link menu-icon pull-right"></i><span>Matplotlib Reference</span></a></li><li><a target="_blank" title="Opens in a new window" href="http://docs.sympy.org/latest/index.html?v=20200713165357"><i class="fa fa-external-link menu-icon pull-right"></i><span>SymPy Reference</span></a></li><li><a target="_blank" title="Opens in a new window" href="https://pandas.pydata.org/pandas-docs/stable/?v=20200713165357"><i class="fa fa-external-link menu-icon pull-right"></i><span>pandas Reference</span></a></li><li class="divider"></li>
+                        <li title="About Jupyter Notebook"><a id="notebook_about" href="http://localhost:8888/notebooks/Desktop/Python/exponential%20graphs.ipynb#">About</a></li>
+                        
+                    </ul>
+                </li>
+              </ul>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div id="maintoolbar" class="navbar">
+  <div class="toolbar-inner navbar-inner navbar-nobg">
+    <div id="maintoolbar-container" class="container toolbar"><div class="btn-group" id="save-notbook"><button class="btn btn-default" title="Save and Checkpoint" data-jupyter-action="jupyter-notebook:save-notebook"><i class="fa-save fa"></i></button></div><div class="btn-group" id="insert_above_below"><button class="btn btn-default" title="insert cell below" data-jupyter-action="jupyter-notebook:insert-cell-below"><i class="fa-plus fa"></i></button></div><div class="btn-group" id="cut_copy_paste"><button class="btn btn-default" title="cut selected cells" data-jupyter-action="jupyter-notebook:cut-cell"><i class="fa-cut fa"></i></button><button class="btn btn-default" title="copy selected cells" data-jupyter-action="jupyter-notebook:copy-cell"><i class="fa-copy fa"></i></button><button class="btn btn-default" title="paste cells below" data-jupyter-action="jupyter-notebook:paste-cell-below"><i class="fa-paste fa"></i></button></div><div class="btn-group" id="move_up_down"><button class="btn btn-default" title="move selected cells up" data-jupyter-action="jupyter-notebook:move-cell-up"><i class="fa-arrow-up fa"></i></button><button class="btn btn-default" title="move selected cells down" data-jupyter-action="jupyter-notebook:move-cell-down"><i class="fa-arrow-down fa"></i></button></div><div class="btn-group" id="run_int"><button class="btn btn-default" title="Run" data-jupyter-action="jupyter-notebook:run-cell-and-select-next"><i class="fa-step-forward fa"></i><span class="toolbar-btn-label">Run</span></button><button class="btn btn-default" title="interrupt the kernel" data-jupyter-action="jupyter-notebook:interrupt-kernel"><i class="fa-stop fa"></i></button><button class="btn btn-default" title="restart the kernel (with dialog)" data-jupyter-action="jupyter-notebook:confirm-restart-kernel"><i class="fa-repeat fa"></i></button><button class="btn btn-default" title="restart the kernel, then re-run the whole notebook (with dialog)" data-jupyter-action="jupyter-notebook:confirm-restart-kernel-and-run-all-cells"><i class="fa-forward fa"></i></button></div><select id="cell_type" aria-label="combobox, select cell type" role="combobox" class="form-control select-xs"><option value="code">Code</option><option value="markdown">Markdown</option><option value="raw">Raw NBConvert</option><option value="heading">Heading</option><option value="multiselect" disabled="disabled" style="display: none;">-</option></select><div class="btn-group" id="cmd_palette"><button class="btn btn-default" title="open the command palette" data-jupyter-action="jupyter-notebook:show-command-palette"><i class="fa-keyboard-o fa"></i></button></div></div>
+  </div>
+</div>
+</div>
+
+<div class="lower-header-bar"></div>
+
+</div>
+
+<div id="site" style="display: block; height: 340.5px;">
+
+
+<div id="ipython-main-app">
+    <div id="notebook_panel">
+        <div id="notebook" tabindex="-1"><div class="container" id="notebook-container"><div class="cell code_cell rendered selected" tabindex="2"><div class="input"><div class="prompt_container"><div class="prompt input_prompt"><bdi>In</bdi>&nbsp;[2]:</div><div class="run_this_cell" title="Run this cell"><i class="fa-step-forward fa"></i></div></div><div class="inner_cell"><div class="ctb_hideshow"><div class="celltoolbar"></div></div><div class="input_area" aria-label="Edit code here"><div class="CodeMirror cm-s-ipython"><div style="overflow: hidden; position: relative; width: 3px; height: 0px; top: 5.59375px; left: 38px;"><textarea autocorrect="off" autocapitalize="off" spellcheck="false" tabindex="0" style="position: absolute; bottom: -1em; padding: 0px; width: 1000px; height: 1em; outline: none;"></textarea></div><div class="CodeMirror-vscrollbar" tabindex="-1" cm-not-content="true" style="bottom: 0px;"><div style="min-width: 1px; height: 0px;"></div></div><div class="CodeMirror-hscrollbar" tabindex="-1" cm-not-content="true"><div style="height: 100%; min-height: 1px; width: 0px;"></div></div><div class="CodeMirror-scrollbar-filler" cm-not-content="true"></div><div class="CodeMirror-gutter-filler" cm-not-content="true"></div><div class="CodeMirror-scroll" tabindex="-1"><div class="CodeMirror-sizer" style="margin-left: 34px; min-width: 397px; margin-bottom: -8px; border-right-width: 22px; min-height: 674px; padding-right: 0px; padding-bottom: 0px;"><div style="position: relative; top: 0px;"><div class="CodeMirror-lines" role="presentation"><div role="presentation" style="position: relative; outline: none;"><div class="CodeMirror-measure"><div class="CodeMirror-linenumber CodeMirror-gutter-elt"><div>39</div></div></div><div class="CodeMirror-measure"></div><div style="position: relative; z-index: 1;"></div><div class="CodeMirror-cursors"><div class="CodeMirror-cursor" style="left: 4px; top: 0px; height: 17px;">&nbsp;</div></div><div class="CodeMirror-code" role="presentation" style=""><div style="position: relative;"><div class="CodeMirror-gutter-wrapper" style="left: -35px;"><div class="CodeMirror-linenumber CodeMirror-gutter-elt" style="left: 0px; width: 21px;">1</div></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-keyword">import</span> <span class="cm-variable">matplotlib</span>.<span class="cm-property">pyplot</span> <span class="cm-keyword">as</span> <span class="cm-variable">plt</span></span></pre></div><div style="position: relative;"><div class="CodeMirror-gutter-wrapper" style="left: -35px;"><div class="CodeMirror-linenumber CodeMirror-gutter-elt" style="left: 0px; width: 21px;">2</div></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-keyword">import</span> <span class="cm-variable">numpy</span> <span class="cm-keyword">as</span> <span class="cm-variable">np</span></span></pre></div><div style="position: relative;"><div class="CodeMirror-gutter-wrapper" style="left: -35px;"><div class="CodeMirror-linenumber CodeMirror-gutter-elt" style="left: 0px; width: 21px;">3</div></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-comment"># if using a Jupyter notebook, include:</span></span></pre></div><div style="position: relative;"><div class="CodeMirror-gutter-wrapper" style="left: -35px;"><div class="CodeMirror-linenumber CodeMirror-gutter-elt" style="left: 0px; width: 21px;">4</div></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-operator">%</span><span class="cm-variable">matplotlib</span> <span class="cm-variable">inline</span></span></pre></div><div style="position: relative;"><div class="CodeMirror-gutter-wrapper" style="left: -35px;"><div class="CodeMirror-linenumber CodeMirror-gutter-elt" style="left: 0px; width: 21px;">5</div></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span cm-text="">​</span></span></pre></div><div style="position: relative;"><div class="CodeMirror-gutter-wrapper" style="left: -35px;"><div class="CodeMirror-linenumber CodeMirror-gutter-elt" style="left: 0px; width: 21px;">6</div></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-comment"># Data for plotting</span></span></pre></div><div style="position: relative;"><div class="CodeMirror-gutter-wrapper" style="left: -35px;"><div class="CodeMirror-linenumber CodeMirror-gutter-elt" style="left: 0px; width: 21px;">7</div></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-variable">t</span> <span class="cm-operator">=</span> <span class="cm-variable">np</span>.<span class="cm-property">arange</span>(<span class="cm-number">0.01</span>, <span class="cm-number">20.0</span>, <span class="cm-number">0.01</span>)</span></pre></div><div style="position: relative;"><div class="CodeMirror-gutter-wrapper" style="left: -35px;"><div class="CodeMirror-linenumber CodeMirror-gutter-elt" style="left: 0px; width: 21px;">8</div></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span cm-text="">​</span></span></pre></div><div style="position: relative;"><div class="CodeMirror-gutter-wrapper" style="left: -35px;"><div class="CodeMirror-linenumber CodeMirror-gutter-elt" style="left: 0px; width: 21px;">9</div></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span cm-text="">​</span></span></pre></div><div style="position: relative;"><div class="CodeMirror-gutter-wrapper" style="left: -35px;"><div class="CodeMirror-linenumber CodeMirror-gutter-elt" style="left: 0px; width: 21px;">10</div></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-comment"># Create a figure with 2 rows and 2 cols of subplots</span></span></pre></div><div style="position: relative;"><div class="CodeMirror-gutter-wrapper" style="left: -35px;"><div class="CodeMirror-linenumber CodeMirror-gutter-elt" style="left: 0px; width: 21px;">11</div></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-variable">fig</span>, ((<span class="cm-variable">ax1</span>, <span class="cm-variable">ax2</span>), (<span class="cm-variable">ax3</span>, <span class="cm-variable">ax4</span>)) <span class="cm-operator">=</span> <span class="cm-variable">plt</span>.<span class="cm-property">subplots</span>(<span class="cm-number">2</span>, <span class="cm-number">2</span>)</span></pre></div><div style="position: relative;"><div class="CodeMirror-gutter-wrapper" style="left: -35px;"><div class="CodeMirror-linenumber CodeMirror-gutter-elt" style="left: 0px; width: 21px;">12</div></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span cm-text="">​</span></span></pre></div><div style="position: relative;"><div class="CodeMirror-gutter-wrapper" style="left: -35px;"><div class="CodeMirror-linenumber CodeMirror-gutter-elt" style="left: 0px; width: 21px;">13</div></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span cm-text="">​</span></span></pre></div><div style="position: relative;"><div class="CodeMirror-gutter-wrapper" style="left: -35px;"><div class="CodeMirror-linenumber CodeMirror-gutter-elt" style="left: 0px; width: 21px;">14</div></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-comment"># linear x and y axis</span></span></pre></div><div style="position: relative;"><div class="CodeMirror-gutter-wrapper" style="left: -35px;"><div class="CodeMirror-linenumber CodeMirror-gutter-elt" style="left: 0px; width: 21px;">15</div></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-variable">ax1</span>.<span class="cm-property">plot</span>(<span class="cm-variable">t</span>, <span class="cm-variable">np</span>.<span class="cm-property">exp</span>(<span class="cm-operator">-</span><span class="cm-variable">t</span> <span class="cm-operator">/</span> <span class="cm-number">5.0</span>))</span></pre></div><div style="position: relative;"><div class="CodeMirror-gutter-wrapper" style="left: -35px;"><div class="CodeMirror-linenumber CodeMirror-gutter-elt" style="left: 0px; width: 21px;">16</div></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-variable">ax1</span>.<span class="cm-property">set_title</span>(<span class="cm-string">'linear x and y'</span>)</span></pre></div><div style="position: relative;"><div class="CodeMirror-gutter-wrapper" style="left: -35px;"><div class="CodeMirror-linenumber CodeMirror-gutter-elt" style="left: 0px; width: 21px;">17</div></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-variable">ax1</span>.<span class="cm-property">grid</span>()</span></pre></div><div style="position: relative;"><div class="CodeMirror-gutter-wrapper" style="left: -35px;"><div class="CodeMirror-linenumber CodeMirror-gutter-elt" style="left: 0px; width: 21px;">18</div></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span cm-text="">​</span></span></pre></div><div style="position: relative;"><div class="CodeMirror-gutter-wrapper" style="left: -35px;"><div class="CodeMirror-linenumber CodeMirror-gutter-elt" style="left: 0px; width: 21px;">19</div></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span cm-text="">​</span></span></pre></div><div style="position: relative;"><div class="CodeMirror-gutter-wrapper" style="left: -35px;"><div class="CodeMirror-linenumber CodeMirror-gutter-elt" style="left: 0px; width: 21px;">20</div></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-comment"># log y axis</span></span></pre></div><div style="position: relative;"><div class="CodeMirror-gutter-wrapper" style="left: -35px;"><div class="CodeMirror-linenumber CodeMirror-gutter-elt" style="left: 0px; width: 21px;">21</div></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-variable">ax2</span>.<span class="cm-property">semilogy</span>(<span class="cm-variable">t</span>, <span class="cm-variable">np</span>.<span class="cm-property">exp</span>(<span class="cm-operator">-</span><span class="cm-variable">t</span> <span class="cm-operator">/</span> <span class="cm-number">5.0</span>))</span></pre></div><div style="position: relative;"><div class="CodeMirror-gutter-wrapper" style="left: -35px;"><div class="CodeMirror-linenumber CodeMirror-gutter-elt" style="left: 0px; width: 21px;">22</div></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-variable">ax2</span>.<span class="cm-property">set_title</span>(<span class="cm-string">'semilogy'</span>)</span></pre></div><div style="position: relative;"><div class="CodeMirror-gutter-wrapper" style="left: -35px;"><div class="CodeMirror-linenumber CodeMirror-gutter-elt" style="left: 0px; width: 21px;">23</div></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-variable">ax2</span>.<span class="cm-property">grid</span>()</span></pre></div><div style="position: relative;"><div class="CodeMirror-gutter-wrapper" style="left: -35px;"><div class="CodeMirror-linenumber CodeMirror-gutter-elt" style="left: 0px; width: 21px;">24</div></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span cm-text="">​</span></span></pre></div><div style="position: relative;"><div class="CodeMirror-gutter-wrapper" style="left: -35px;"><div class="CodeMirror-linenumber CodeMirror-gutter-elt" style="left: 0px; width: 21px;">25</div></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span cm-text="">​</span></span></pre></div><div style="position: relative;"><div class="CodeMirror-gutter-wrapper" style="left: -35px;"><div class="CodeMirror-linenumber CodeMirror-gutter-elt" style="left: 0px; width: 21px;">26</div></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-comment"># log x axis</span></span></pre></div><div style="position: relative;"><div class="CodeMirror-gutter-wrapper" style="left: -35px;"><div class="CodeMirror-linenumber CodeMirror-gutter-elt" style="left: 0px; width: 21px;">27</div></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-variable">ax3</span>.<span class="cm-property">semilogx</span>(<span class="cm-variable">t</span>, <span class="cm-variable">np</span>.<span class="cm-property">exp</span>(<span class="cm-operator">-</span><span class="cm-variable">t</span> <span class="cm-operator">/</span> <span class="cm-number">5.0</span>))</span></pre></div><div style="position: relative;"><div class="CodeMirror-gutter-wrapper" style="left: -35px;"><div class="CodeMirror-linenumber CodeMirror-gutter-elt" style="left: 0px; width: 21px;">28</div></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-variable">ax3</span>.<span class="cm-property">set_title</span>(<span class="cm-string">'semilogx'</span>)</span></pre></div><div style="position: relative;"><div class="CodeMirror-gutter-wrapper" style="left: -35px;"><div class="CodeMirror-linenumber CodeMirror-gutter-elt" style="left: 0px; width: 21px;">29</div></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-variable">ax3</span>.<span class="cm-property">grid</span>()</span></pre></div><div style="position: relative;"><div class="CodeMirror-gutter-wrapper" style="left: -35px;"><div class="CodeMirror-linenumber CodeMirror-gutter-elt" style="left: 0px; width: 21px;">30</div></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span cm-text="">​</span></span></pre></div><div style="position: relative;"><div class="CodeMirror-gutter-wrapper" style="left: -35px;"><div class="CodeMirror-linenumber CodeMirror-gutter-elt" style="left: 0px; width: 21px;">31</div></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span cm-text="">​</span></span></pre></div><div style="position: relative;"><div class="CodeMirror-gutter-wrapper" style="left: -35px;"><div class="CodeMirror-linenumber CodeMirror-gutter-elt" style="left: 0px; width: 21px;">32</div></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-comment"># log x and y axis</span></span></pre></div><div style="position: relative;"><div class="CodeMirror-gutter-wrapper" style="left: -35px;"><div class="CodeMirror-linenumber CodeMirror-gutter-elt" style="left: 0px; width: 21px;">33</div></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-variable">ax4</span>.<span class="cm-property">loglog</span>(<span class="cm-variable">t</span>, <span class="cm-number">20</span> <span class="cm-operator">*</span> <span class="cm-variable">np</span>.<span class="cm-property">exp</span>(<span class="cm-operator">-</span><span class="cm-variable">t</span> <span class="cm-operator">/</span> <span class="cm-number">5.0</span>), <span class="cm-variable">basex</span><span class="cm-operator">=</span><span class="cm-number">2</span>)</span></pre></div><div style="position: relative;"><div class="CodeMirror-gutter-wrapper" style="left: -35px;"><div class="CodeMirror-linenumber CodeMirror-gutter-elt" style="left: 0px; width: 21px;">34</div></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-variable">ax4</span>.<span class="cm-property">set_title</span>(<span class="cm-string">'loglog base 2 on x'</span>)</span></pre></div><div style="position: relative;"><div class="CodeMirror-gutter-wrapper" style="left: -35px;"><div class="CodeMirror-linenumber CodeMirror-gutter-elt" style="left: 0px; width: 21px;">35</div></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-variable">ax4</span>.<span class="cm-property">grid</span>()</span></pre></div><div style="position: relative;"><div class="CodeMirror-gutter-wrapper" style="left: -35px;"><div class="CodeMirror-linenumber CodeMirror-gutter-elt" style="left: 0px; width: 21px;">36</div></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span cm-text="">​</span></span></pre></div><div style="position: relative;"><div class="CodeMirror-gutter-wrapper" style="left: -35px;"><div class="CodeMirror-linenumber CodeMirror-gutter-elt" style="left: 0px; width: 21px;">37</div></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span cm-text="">​</span></span></pre></div><div style="position: relative;"><div class="CodeMirror-gutter-wrapper" style="left: -35px;"><div class="CodeMirror-linenumber CodeMirror-gutter-elt" style="left: 0px; width: 21px;">38</div></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-variable">fig</span>.<span class="cm-property">tight_layout</span>()</span></pre></div><div style="position: relative;"><div class="CodeMirror-gutter-wrapper" style="left: -35px;"><div class="CodeMirror-linenumber CodeMirror-gutter-elt" style="left: 0px; width: 21px;">39</div></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-variable">plt</span>.<span class="cm-property">show</span>()</span></pre></div></div></div></div></div></div><div style="position: absolute; height: 22px; width: 1px; border-bottom: 0px solid transparent; top: 674px;"></div><div class="CodeMirror-gutters" style="height: 696px; left: -1px;"><div class="CodeMirror-gutter CodeMirror-linenumbers" style="width: 33px;"></div></div></div></div></div></div></div><div class="output_wrapper"><div class="out_prompt_overlay prompt" title="click to expand output; double click to hide output"></div><div class="output"><div class="output_area"><div class="run_this_cell"></div><div class="prompt"></div><div class="output_subarea output_png"><img src="data:image/png;base64,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"></div></div></div><div class="btn btn-default output_collapsed" title="click to expand output" style="display: none;">. . .</div></div></div><div class="cell text_cell unrendered unselected" tabindex="2"><div class="prompt input_prompt"></div><div class="inner_cell"><div class="ctb_hideshow"><div class="celltoolbar"></div></div><div class="input_area" aria-label="Edit Markup Text here"><div class="CodeMirror cm-s-default CodeMirror-wrap"><div style="overflow: hidden; position: relative; width: 3px; height: 0px; top: 5.59375px; left: 38px;"><textarea autocorrect="off" autocapitalize="off" spellcheck="false" tabindex="0" style="position: absolute; bottom: -1em; padding: 0px; width: 1000px; height: 1em; outline: none;"></textarea></div><div class="CodeMirror-vscrollbar" tabindex="-1" cm-not-content="true" style="bottom: 0px;"><div style="min-width: 1px; height: 0px;"></div></div><div class="CodeMirror-hscrollbar" tabindex="-1" cm-not-content="true"><div style="height: 100%; min-height: 1px; width: 0px;"></div></div><div class="CodeMirror-scrollbar-filler" cm-not-content="true"></div><div class="CodeMirror-gutter-filler" cm-not-content="true"></div><div class="CodeMirror-scroll" tabindex="-1"><div class="CodeMirror-sizer" style="margin-left: 34px; padding-right: 0px; padding-bottom: 0px; margin-bottom: -8px; border-right-width: 22px; min-height: 385px;"><div style="position: relative; top: 0px;"><div class="CodeMirror-lines" role="presentation"><div role="presentation" style="position: relative; outline: none;"><div class="CodeMirror-measure"><div class="CodeMirror-linenumber CodeMirror-gutter-elt"><div>22</div></div></div><div class="CodeMirror-measure"></div><div style="position: relative; z-index: 1;"></div><div class="CodeMirror-cursors" style=""><div class="CodeMirror-cursor" style="left: 4px; top: 0px; height: 17px;">&nbsp;</div></div><div class="CodeMirror-code" role="presentation" style=""><div style="position: relative;"><div class="CodeMirror-gutter-wrapper" style="left: -35px;"><div class="CodeMirror-linenumber CodeMirror-gutter-elt" style="left: 0px; width: 21px;">1</div></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">import numpy as np</span></pre></div><div style="position: relative;"><div class="CodeMirror-gutter-wrapper" style="left: -35px;"><div class="CodeMirror-linenumber CodeMirror-gutter-elt" style="left: 0px; width: 21px;">2</div></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">import matplotlib.pyplot as plt</span></pre></div><div style="position: relative;"><div class="CodeMirror-gutter-wrapper" style="left: -35px;"><div class="CodeMirror-linenumber CodeMirror-gutter-elt" style="left: 0px; width: 21px;">3</div></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span cm-text="">​</span></span></pre></div><div style="position: relative;"><div class="CodeMirror-gutter-wrapper" style="left: -35px;"><div class="CodeMirror-linenumber CodeMirror-gutter-elt" style="left: 0px; width: 21px;">4</div></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span cm-text="">​</span></span></pre></div><div style="position: relative;"><div class="CodeMirror-gutter-wrapper" style="left: -35px;"><div class="CodeMirror-linenumber CodeMirror-gutter-elt" style="left: 0px; width: 21px;">5</div></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">def main():</span></pre></div><div style="position: relative;"><div class="CodeMirror-gutter-wrapper" style="left: -35px;"><div class="CodeMirror-linenumber CodeMirror-gutter-elt" style="left: 0px; width: 21px;">6</div></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"> &nbsp;  x = np.linspace(-1, 2, 100)</span></pre></div><div style="position: relative;"><div class="CodeMirror-gutter-wrapper" style="left: -35px;"><div class="CodeMirror-linenumber CodeMirror-gutter-elt" style="left: 0px; width: 21px;">7</div></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"> &nbsp;  y = np.exp(x)</span></pre></div><div style="position: relative;"><div class="CodeMirror-gutter-wrapper" style="left: -35px;"><div class="CodeMirror-linenumber CodeMirror-gutter-elt" style="left: 0px; width: 21px;">8</div></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span cm-text="">​</span></span></pre></div><div style="position: relative;"><div class="CodeMirror-gutter-wrapper" style="left: -35px;"><div class="CodeMirror-linenumber CodeMirror-gutter-elt" style="left: 0px; width: 21px;">9</div></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"> &nbsp;  plt.figure()</span></pre></div><div style="position: relative;"><div class="CodeMirror-gutter-wrapper" style="left: -35px;"><div class="CodeMirror-linenumber CodeMirror-gutter-elt" style="left: 0px; width: 21px;">10</div></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"> &nbsp;  plt.plot(x, y)</span></pre></div><div style="position: relative;"><div class="CodeMirror-gutter-wrapper" style="left: -35px;"><div class="CodeMirror-linenumber CodeMirror-gutter-elt" style="left: 0px; width: 21px;">11</div></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"> &nbsp;  plt.xlabel('$x$')</span></pre></div><div style="position: relative;"><div class="CodeMirror-gutter-wrapper" style="left: -35px;"><div class="CodeMirror-linenumber CodeMirror-gutter-elt" style="left: 0px; width: 21px;">12</div></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"> &nbsp;  plt.ylabel('$\exp(x)$')</span></pre></div><div style="position: relative;"><div class="CodeMirror-gutter-wrapper" style="left: -35px;"><div class="CodeMirror-linenumber CodeMirror-gutter-elt" style="left: 0px; width: 21px;">13</div></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span cm-text="">​</span></span></pre></div><div style="position: relative;"><div class="CodeMirror-gutter-wrapper" style="left: -35px;"><div class="CodeMirror-linenumber CodeMirror-gutter-elt" style="left: 0px; width: 21px;">14</div></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"> &nbsp;  plt.figure()</span></pre></div><div style="position: relative;"><div class="CodeMirror-gutter-wrapper" style="left: -35px;"><div class="CodeMirror-linenumber CodeMirror-gutter-elt" style="left: 0px; width: 21px;">15</div></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"> &nbsp;  plt.plot(x, -np.exp(-x))</span></pre></div><div style="position: relative;"><div class="CodeMirror-gutter-wrapper" style="left: -35px;"><div class="CodeMirror-linenumber CodeMirror-gutter-elt" style="left: 0px; width: 21px;">16</div></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"> &nbsp;  plt.xlabel('$x$')</span></pre></div><div style="position: relative;"><div class="CodeMirror-gutter-wrapper" style="left: -35px;"><div class="CodeMirror-linenumber CodeMirror-gutter-elt" style="left: 0px; width: 21px;">17</div></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"> &nbsp;  plt.ylabel('$-\exp(-x)$')</span></pre></div><div style="position: relative;"><div class="CodeMirror-gutter-wrapper" style="left: -35px;"><div class="CodeMirror-linenumber CodeMirror-gutter-elt" style="left: 0px; width: 21px;">18</div></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span cm-text="">​</span></span></pre></div><div style="position: relative;"><div class="CodeMirror-gutter-wrapper" style="left: -35px;"><div class="CodeMirror-linenumber CodeMirror-gutter-elt" style="left: 0px; width: 21px;">19</div></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"> &nbsp;  plt.show()</span></pre></div><div style="position: relative;"><div class="CodeMirror-gutter-wrapper" style="left: -35px;"><div class="CodeMirror-linenumber CodeMirror-gutter-elt" style="left: 0px; width: 21px;">20</div></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span cm-text="">​</span></span></pre></div><div style="position: relative;"><div class="CodeMirror-gutter-wrapper" style="left: -35px;"><div class="CodeMirror-linenumber CodeMirror-gutter-elt" style="left: 0px; width: 21px;">21</div></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">if __name__ == '__main__':</span></pre></div><div style="position: relative;"><div class="CodeMirror-gutter-wrapper" style="left: -35px;"><div class="CodeMirror-linenumber CodeMirror-gutter-elt" style="left: 0px; width: 21px;">22</div></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"> &nbsp;  main()</span></pre></div></div></div></div></div></div><div style="position: absolute; height: 22px; width: 1px; border-bottom: 0px solid transparent; top: 385px;"></div><div class="CodeMirror-gutters" style="left: -1px; height: 407px;"><div class="CodeMirror-gutter CodeMirror-linenumbers" style="width: 33px;"></div></div></div></div></div><div class="text_cell_render rendered_html" tabindex="-1"></div></div></div><div class="cell code_cell unselected rendered" tabindex="2"><div class="input"><div class="prompt_container"><div class="prompt input_prompt"><bdi>In</bdi>&nbsp;[&nbsp;]:</div><div class="run_this_cell" title="Run this cell"><i class="fa-step-forward fa"></i></div></div><div class="inner_cell"><div class="ctb_hideshow"><div class="celltoolbar"></div></div><div class="input_area" aria-label="Edit code here"><div class="CodeMirror cm-s-ipython"><div style="overflow: hidden; position: relative; width: 3px; height: 0px; top: 5.59375px; left: 38px;"><textarea autocorrect="off" autocapitalize="off" spellcheck="false" tabindex="0" style="position: absolute; bottom: -1em; padding: 0px; width: 1000px; height: 1em; outline: none;"></textarea></div><div class="CodeMirror-vscrollbar" tabindex="-1" cm-not-content="true"><div style="min-width: 1px; height: 0px;"></div></div><div class="CodeMirror-hscrollbar" tabindex="-1" cm-not-content="true"><div style="height: 100%; min-height: 1px; width: 0px;"></div></div><div class="CodeMirror-scrollbar-filler" cm-not-content="true"></div><div class="CodeMirror-gutter-filler" cm-not-content="true"></div><div class="CodeMirror-scroll" tabindex="-1"><div class="CodeMirror-sizer" style="margin-left: 34px; min-width: 7px; margin-bottom: -8px; border-right-width: 22px; min-height: 28px; padding-right: 0px; padding-bottom: 0px;"><div style="position: relative; top: 0px;"><div class="CodeMirror-lines" role="presentation"><div role="presentation" style="position: relative; outline: none;"><div class="CodeMirror-measure"><pre class="CodeMirror-line-like"><span>xxxxxxxxxx</span></pre></div><div class="CodeMirror-measure"></div><div style="position: relative; z-index: 1;"></div><div class="CodeMirror-cursors"><div class="CodeMirror-cursor" style="left: 4px; top: 0px; height: 17px;">&nbsp;</div></div><div class="CodeMirror-code" role="presentation"><div style="position: relative;"><div class="CodeMirror-gutter-wrapper" style="left: -35px;"><div class="CodeMirror-linenumber CodeMirror-gutter-elt" style="left: 0px; width: 21px;">1</div></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span cm-text="">​</span></span></pre></div></div></div></div></div></div><div style="position: absolute; height: 22px; width: 1px; border-bottom: 0px solid transparent; top: 28px;"></div><div class="CodeMirror-gutters" style="height: 50px; left: -1px;"><div class="CodeMirror-gutter CodeMirror-linenumbers" style="width: 33px;"></div></div></div></div></div></div></div><div class="output_wrapper"><div class="out_prompt_overlay prompt" title="click to expand output; double click to hide output"></div><div class="output"></div><div class="btn btn-default output_collapsed" title="click to expand output" style="display: none;">. . .</div></div></div></div><div class="end_space"></div></div>
+        <div id="tooltip" class="ipython_tooltip" style="display:none"><div class="tooltipbuttons"><a href="http://localhost:8888/notebooks/Desktop/Python/exponential%20graphs.ipynb#" role="button" class="ui-button"><span class="ui-icon ui-icon-close">Close</span></a><a href="http://localhost:8888/notebooks/Desktop/Python/exponential%20graphs.ipynb#" role="button" class="ui-button" id="expanbutton" title="Grow the tooltip vertically (press shift-tab twice)"><span class="ui-icon ui-icon-plus">Expand</span></a><a href="http://localhost:8888/notebooks/Desktop/Python/exponential%20graphs.ipynb#" role="button" class="ui-button" title="show the current docstring in pager (press shift-tab 4 times)"><span class="ui-icon ui-icon-arrowstop-l-n">Open in Pager</span></a><a href="http://localhost:8888/notebooks/Desktop/Python/exponential%20graphs.ipynb#" role="button" class="ui-button" title="Tooltip will linger for 10 seconds while you type" style="display: none;"><span class="ui-icon ui-icon-clock">Close</span></a></div><div class="pretooltiparrow"></div><div class="tooltiptext smalltooltip"></div></div>
+    </div>
+</div>
+
+
+
+</div>
+
+
+
+<div id="pager" class="ui-resizable">
+    <div id="pager-contents">
+        <div id="pager-container" class="container"></div>
+    </div>
+    <div id="pager-button-area"><a role="button" title="Open the pager in an external window" class="ui-button"><span class="ui-icon ui-icon-extlink"></span></a><a role="button" title="Close the pager" class="ui-button"><span class="ui-icon ui-icon-close"></span></a></div>
+<div class="ui-resizable-handle ui-resizable-n" style="z-index: 90;"></div></div>
+
+
+
+
+
+
+<script type="text/javascript">
+    sys_info = {"notebook_version": "6.0.3", "notebook_path": "D:\\Python program installation folder\\lib\\site-packages\\notebook", "commit_source": "", "commit_hash": "", "sys_version": "3.7.6 (default, Jan  8 2020, 20:23:39) [MSC v.1916 64 bit (AMD64)]", "sys_executable": "D:\\Python program installation folder\\python.exe", "sys_platform": "win32", "platform": "Windows-10-10.0.18362-SP0", "os_name": "nt", "default_encoding": "utf-8"};
+</script>
+
+<script src="./exponential graphs - Jupyter Notebook_files/encoding.js.download" charset="utf-8"></script>
+
+<script src="./exponential graphs - Jupyter Notebook_files/main.min.js.download" type="text/javascript" charset="utf-8"></script>
+
+
+
+<script type="text/javascript">
+  function _remove_token_from_url() {
+    if (window.location.search.length <= 1) {
+      return;
+    }
+    var search_parameters = window.location.search.slice(1).split('&');
+    for (var i = 0; i < search_parameters.length; i++) {
+      if (search_parameters[i].split('=')[0] === 'token') {
+        // remote token from search parameters
+        search_parameters.splice(i, 1);
+        var new_search = '';
+        if (search_parameters.length) {
+          new_search = '?' + search_parameters.join('&');
+        }
+        var new_url = window.location.origin + 
+                      window.location.pathname + 
+                      new_search + 
+                      window.location.hash;
+        window.history.replaceState({}, "", new_url);
+        return;
+      }
+    }
+  }
+  _remove_token_from_url();
+</script>
+
+
+</body></html>
